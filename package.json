@@ -1,0 +1,29 @@
+{
+  "name": "scatch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/husnainali588/Scatch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/husnainali588/Scatch/issues"
+  },
+  "homepage": "https://github.com/husnainali588/Scatch#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parse": "^0.4.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.0.0",
+    "multer": "^2.0.2"
+  }
+}
