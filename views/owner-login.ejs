@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatch - Owner Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xxs': '0.65rem',
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#3b82f6',
+                            dark: '#1f2937',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'shine': 'shine 1s ease-in-out',
+                        'auto-bounce': 'autoBounce 3s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        shine: {
+                            '0%': { left: '-100%' },
+                            '100%': { left: '100%' }
+                        },
+                        autoBounce: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '5%': { transform: 'translateY(-10px)' },
+                            '10%': { transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .animation-delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .animation-delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .animation-delay-300 {
+            animation-delay: 300ms;
+        }
+
+        @keyframes letter-wave {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            30% {
+                transform: translateY(-12px) scale(1.1);
+                color: #2563eb;
+                text-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+            }
+
+            60% {
+                transform: translateY(2px) scale(0.95);
+            }
+        }
+
+        .scatch-wrapper {
+            display: inline-flex;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .letter-span {
+            display: inline-block;
+            transition: color 0.2s ease;
+            transform-origin: bottom center;
+        }
+
+        .scatch-wrapper:hover .letter-span {
+            animation: letter-wave 0.8s cubic-bezier(0.35, 0, 0.25, 1);
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(1) {
+            animation-delay: 0ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(2) {
+            animation-delay: 50ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(3) {
+            animation-delay: 100ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(4) {
+            animation-delay: 150ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(5) {
+            animation-delay: 200ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(6) {
+            animation-delay: 250ms;
+        }
+
+        .ball-span {
+            display: inline-block;
+            color: #3b82f6;
+        }
+
+        .scatch-wrapper:not(:hover) .ball-span {
+            animation: autoBounce 3s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .scatch-wrapper:hover .ball-span {
+            animation: letter-wave 0.8s cubic-bezier(0.35, 0, 0.25, 1);
+            animation-delay: 350ms;
+            color: #ec4899;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 h-screen w-screen overflow-hidden flex flex-col relative text-xs">
+
+    <!-- Main Content Container -->
+    <main class="flex-grow flex items-center justify-center px-6 md:px-12 relative z-10 overflow-y-auto w-full">
+
+        <div class="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+
+            <!-- Left Side: Owner Registration -->
+            <div class="space-y-2 opacity-0 animate-fade-in-up animation-delay-100 relative">
+                <div>
+                    <h1
+                        class="text-lg md:text-xl font-extrabold text-gray-900 mb-0.5 tracking-tight leading-tight select-none">
+                        <span class="scatch-wrapper ml-1 text-blue-500">
+                            <span class="letter-span">S</span>
+                            <span class="letter-span">c</span>
+                            <span class="letter-span">a</span>
+                            <span class="letter-span">t</span>
+                            <span class="letter-span">c</span>
+                            <span class="letter-span">h</span>
+                            <span class="letter-span ball-span text-blue-500">.</span>
+                        </span>
+                        <span class="text-gray-400 font-normal ml-1">Owner</span>
+                    </h1>
+                    <div class="flex items-center justify-between">
+                        <p class="text-xs text-gray-600 font-medium">register new admin</p>
+                    </div>
+                </div>
+
+                <form class="space-y-1.5 mt-2" onsubmit="event.preventDefault()">
+                    <div class="group relative">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                        </div>
+                        <input type="text" placeholder="Admin ID"
+                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs font-medium focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                    </div>
+                    <div class="group relative">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                        </div>
+                        <input type="email" placeholder="Business Email"
+                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs font-medium focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                    </div>
+                    <div class="group relative">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                        </div>
+                        <input type="password" placeholder="Master Password"
+                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs font-medium focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                    </div>
+
+                    <div class="pt-1">
+                        <button type="submit"
+                            class="relative bg-gray-800 hover:bg-gray-900 text-white text-xs font-semibold py-1.5 px-4 rounded-full shadow-md shadow-gray-500/30 hover:shadow-gray-500/50 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 ease-out w-full md:w-auto overflow-hidden group">
+                            <span class="relative z-10">Register Access</span>
+                            <div
+                                class="absolute top-0 -left-full w-1/2 h-full bg-white/10 skew-x-12 group-hover:animate-[shine_1s_ease-in-out]">
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Side: Owner Login -->
+            <div class="space-y-2 mt-3 md:mt-6 opacity-0 animate-fade-in-up animation-delay-300">
+                <div>
+                    <h2 class="text-base md:text-lg font-bold text-gray-900 mb-0.5">Owner Login</h2>
+                    <p class="text-gray-500 text-xs">Access the main dashboard.</p>
+                </div>
+
+                <form class="space-y-1.5" onsubmit="event.preventDefault()">
+                    <div class="group relative">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                        </div>
+                        <input type="email" placeholder="Business Email"
+                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs font-medium focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                    </div>
+                    <div class="group relative">
+                        <div
+                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                        </div>
+                        <input type="password" placeholder="Master Password"
+                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs font-medium focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                    </div>
+
+                    <div class="pt-1">
+                        <button type="submit"
+                            class="relative bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-1.5 px-5 rounded-full shadow-md shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 ease-out w-full md:w-auto overflow-hidden group">
+                            <span class="relative z-10">Enter Portal</span>
+                            <div
+                                class="absolute top-0 -left-full w-1/2 h-full bg-white/20 skew-x-12 group-hover:animate-[shine_1s_ease-in-out]">
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
