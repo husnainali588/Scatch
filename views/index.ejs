@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,19 +48,39 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
         }
 
-        .animation-delay-100 { animation-delay: 100ms; }
-        .animation-delay-200 { animation-delay: 200ms; }
-        .animation-delay-300 { animation-delay: 300ms; }
+        .animation-delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .animation-delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .animation-delay-300 {
+            animation-delay: 300ms;
+        }
 
         @keyframes letter-wave {
-            0%, 100% { transform: translateY(0) scale(1); }
-            30% { transform: translateY(-12px) scale(1.1); color: #2563eb; text-shadow: 0 5px 15px rgba(37, 99, 235, 0.2); }
-            60% { transform: translateY(2px) scale(0.95); }
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            30% {
+                transform: translateY(-12px) scale(1.1);
+                color: #2563eb;
+                text-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+            }
+
+            60% {
+                transform: translateY(2px) scale(0.95);
+            }
         }
 
         .scatch-wrapper {
@@ -77,19 +98,36 @@
         .scatch-wrapper:hover .letter-span {
             animation: letter-wave 0.8s cubic-bezier(0.35, 0, 0.25, 1);
         }
-        
-        .scatch-wrapper:hover .letter-span:nth-child(1) { animation-delay: 0ms; }
-        .scatch-wrapper:hover .letter-span:nth-child(2) { animation-delay: 50ms; }
-        .scatch-wrapper:hover .letter-span:nth-child(3) { animation-delay: 100ms; }
-        .scatch-wrapper:hover .letter-span:nth-child(4) { animation-delay: 150ms; }
-        .scatch-wrapper:hover .letter-span:nth-child(5) { animation-delay: 200ms; }
-        .scatch-wrapper:hover .letter-span:nth-child(6) { animation-delay: 250ms; }
-        
+
+        .scatch-wrapper:hover .letter-span:nth-child(1) {
+            animation-delay: 0ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(2) {
+            animation-delay: 50ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(3) {
+            animation-delay: 100ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(4) {
+            animation-delay: 150ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(5) {
+            animation-delay: 200ms;
+        }
+
+        .scatch-wrapper:hover .letter-span:nth-child(6) {
+            animation-delay: 250ms;
+        }
+
         .ball-span {
             display: inline-block;
             color: #3b82f6;
         }
-        
+
         .scatch-wrapper:not(:hover) .ball-span {
             animation: autoBounce 3s ease-in-out infinite;
             animation-delay: 1s;
@@ -102,85 +140,136 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-50 h-screen w-screen overflow-hidden flex flex-col relative text-xs">
 
-    <!-- Canvas for Dynamic Dots Effect: Changed z-index to 50 so it floats ABOVE content -->
-    <canvas id="dots-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-50"></canvas>
-
-    <!-- Main Content -->
-    <main class="flex-grow flex items-center justify-center px-6 md:px-12 relative z-10 overflow-y-auto">
-        
-        <div class="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-            
-            <!-- Left Side: Create Account -->
-            <div class="space-y-2 opacity-0 animate-fade-in-up animation-delay-100">
-                <div>
-                    <h1 class="text-lg md:text-xl font-extrabold text-gray-900 mb-0.5 tracking-tight leading-tight select-none">
-                        welcome to 
-                        <span class="scatch-wrapper ml-1 text-blue-500">
-                            <span class="letter-span">S</span>
-                            <span class="letter-span">c</span>
-                            <span class="letter-span">a</span>
-                            <span class="letter-span">t</span>
-                            <span class="letter-span">c</span>
-                            <span class="letter-span">h</span>
-                            <span class="letter-span ball-span text-blue-500">.</span>
-                        </span>
-                    </h1>
-                    <p class="text-xs text-gray-600 ">create your account</p>
-                </div>
-
-                <form class="space-y-1.5 mt-2" onsubmit="event.preventDefault();">
-                    <div class="group relative">
-                        <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm"></div>
-                        <input type="text" placeholder="Full Name" class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
-                    </div>
-                    <div class="group relative">
-                         <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm"></div>
-                        <input type="email" placeholder="Email" class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
-                    </div>
-                    <div class="group relative">
-                         <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm"></div>
-                        <input type="password" placeholder="Password" class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
-                    </div>
-
-                    <div class="pt-1">
-                        <button type="submit" class="relative bg-blue-600 hover:bg-blue-700 text-white text-xs py-1.5 px-4 rounded-full shadow-md shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 ease-out w-full md:w-auto overflow-hidden group">
-                            <span class="relative z-10">Create My Account</span>
-                            <div class="absolute top-0 -left-full w-1/2 h-full bg-white/20 skew-x-12 group-hover:animate-[shine_1s_ease-in-out]"></div>
-                        </button>
-                    </div>
-                </form>
+    <% if(error && error.length> 0){ %>
+        <div class="fixed top-5 right-5 z-[100]">
+            <div class="flex items-center gap-2 px-4 py-2 bg-white border border-red-200 rounded-full shadow">
+                <svg class="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-red-600 font-medium text-xs tracking-wide">
+                    <%= error %>
+                </span>
             </div>
-
-            <!-- Right Side: Login -->
-            <div class="space-y-2 mt-3 md:mt-6 opacity-0 animate-fade-in-up animation-delay-300"> 
-                <div>
-                    <h2 class="text-base md:text-lg font-bold text-gray-900 mb-0.5">Login Your Account</h2>
-                    <p class="text-gray-500 text-xs">Welcome back, please enter your details.</p>
-                </div>
-
-                <form class="space-y-1.5" onsubmit="event.preventDefault();">
-                    <div class="group relative">
-                         <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm"></div>
-                        <input type="email" placeholder="Email" class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
-                    </div>
-                    <div class="group relative">
-                         <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm"></div>
-                        <input type="password" placeholder="Password" class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
-                    </div>
-
-                    <div class="pt-1">
-                        <button type="submit" class="relative bg-blue-600 hover:bg-blue-700 text-white text-xs py-1.5 px-5 rounded-full shadow-md shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 ease-out w-full md:w-auto overflow-hidden group">
-                            <span class="relative z-10">Login</span>
-                             <div class="absolute top-0 -left-full w-1/2 h-full bg-white/20 skew-x-12 group-hover:animate-[shine_1s_ease-in-out]"></div>
-                        </button>
-                    </div>
-                </form>
-            </div>
-
         </div>
-    </main>
+        <% } %>
+
+            <% if(success && success.length> 0){ %>
+                <div class="fixed top-5 right-5 z-[100]">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-white border border-green-200 rounded-full shadow">
+                        <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        <span class="text-green-600 font-medium text-xs tracking-wide">
+                            <%= success %>
+                        </span>
+                    </div>
+                </div>
+                <% } %>
+
+                    <!-- Canvas for Dynamic Dots Effect -->
+                    <canvas id="dots-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-50"></canvas>
+
+                    <!-- Main Content -->
+                    <main
+                        class="flex-grow flex items-center justify-center px-6 md:px-12 relative z-10 overflow-y-auto">
+
+                        <div class="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+
+                            <!-- Left Side: Create Account -->
+                            <div class="space-y-2 opacity-0 animate-fade-in-up animation-delay-100">
+                                <div>
+                                    <h1
+                                        class="text-lg md:text-xl font-extrabold text-gray-900 mb-0.5 tracking-tight leading-tight select-none">
+                                        welcome to
+                                        <span class="scatch-wrapper ml-1 text-blue-500">
+                                            <span class="letter-span">S</span><span class="letter-span">c</span><span
+                                                class="letter-span">a</span><span class="letter-span">t</span><span
+                                                class="letter-span">c</span><span class="letter-span">h</span><span
+                                                class="letter-span ball-span text-blue-500">.</span>
+                                        </span>
+                                    </h1>
+                                    <p class="text-xs text-gray-600 ">create your account</p>
+                                </div>
+
+                                <form action="/users/register" method="post" class="space-y-1.5 mt-2">
+                                    <div class="group relative">
+                                        <div
+                                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                                        </div>
+                                        <input type="text" placeholder="Full Name" name="fullname"
+                                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                                    </div>
+                                    <div class="group relative">
+                                        <div
+                                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                                        </div>
+                                        <input type="email" placeholder="Email" name="email"
+                                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                                    </div>
+                                    <div class="group relative">
+                                        <div
+                                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                                        </div>
+                                        <input type="password" placeholder="Password" name="password"
+                                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                                    </div>
+
+                                    <div class="pt-1">
+                                        <button type="submit"
+                                            class="relative bg-blue-600 hover:bg-blue-700 text-white text-xs py-1.5 px-4 rounded-full shadow-md shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 ease-out w-full md:w-auto overflow-hidden group">
+                                            <span class="relative z-10">Create My Account</span>
+                                            <div
+                                                class="absolute top-0 -left-full w-1/2 h-full bg-white/20 skew-x-12 group-hover:animate-[shine_1s_ease-in-out]">
+                                            </div>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Right Side: Login -->
+                            <div class="space-y-2 mt-3 md:mt-6 opacity-0 animate-fade-in-up animation-delay-300">
+                                <div>
+                                    <h2 class="text-base md:text-lg font-bold text-gray-900 mb-0.5">Login Your Account
+                                    </h2>
+                                    <p class="text-gray-500 text-xs">Welcome back, please enter your details.</p>
+                                </div>
+
+                                <form class="space-y-1.5" action="/users/login" method="post">
+                                    <div class="group relative">
+                                        <div
+                                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                                        </div>
+                                        <input type="email" placeholder="Email" name="email"
+                                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                                    </div>
+                                    <div class="group relative">
+                                        <div
+                                            class="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded opacity-0 group-hover:opacity-30 group-focus-within:opacity-50 transition duration-500 blur-sm">
+                                        </div>
+                                        <input type="password" placeholder="Password" name="password"
+                                            class="relative w-full bg-gray-100 border border-transparent rounded px-2.5 py-1.5 text-gray-800 placeholder-gray-400 text-xs  focus:bg-white focus:border-transparent focus:ring-0 focus:outline-none transition-all duration-300 ease-out shadow-sm group-hover:bg-white group-hover:shadow-md">
+                                    </div>
+
+                                    <div class="pt-1">
+                                        <button type="submit"
+                                            class="relative bg-blue-600 hover:bg-blue-700 text-white text-xs py-1.5 px-5 rounded-full shadow-md shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300 ease-out w-full md:w-auto overflow-hidden group">
+                                            <span class="relative z-10">Login</span>
+                                            <div
+                                                class="absolute top-0 -left-full w-1/2 h-full bg-white/20 skew-x-12 group-hover:animate-[shine_1s_ease-in-out]">
+                                            </div>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </main>
 
 </body>
+
 </html>

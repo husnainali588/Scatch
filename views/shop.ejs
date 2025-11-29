@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatch Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans selection:bg-blue-100 text-xs">
+
+    <!-- 1. STATIC SUCCESS MESSAGE (Demo) -->
+    <div id="flash-message" class="fixed top-5 right-5 z-[100]">
+        <div class="flex items-center gap-2 px-4 py-2 bg-white border border-green-200 rounded-full shadow-sm">
+            <svg class="w-3 h-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span class="text-green-600 font-medium text-[10px] tracking-wide">
+                Welcome to the Shop!
+            </span>
+        </div>
+    </div>
+
+    <!-- 2. NAVIGATION BAR (Compact) -->
+    <nav class="sticky top-0 z-40 w-full bg-gray-50/80 backdrop-blur-md border-b border-gray-200 px-4 py-2.5 flex justify-between items-center transition-all duration-300">
+        <!-- Logo -->
+        <h1 class="text-base font-bold tracking-tight text-gray-900 select-none cursor-pointer">
+            <span class="text-blue-600">S</span>catch<span class="text-blue-600">.</span>
+        </h1>
+
+        <!-- Navigation Links -->
+        <div class="flex items-center gap-5">
+            <a href="/shop" class="text-gray-900 font-medium text-[11px] transition-colors">Home</a>
+            <a href="/cart" class="text-gray-500 hover:text-gray-900 transition-colors font-medium text-[11px] flex items-center gap-1">
+                Cart 
+                <span class="bg-blue-100 text-blue-600 px-1 py-0.5 rounded-full text-[9px] font-bold min-w-[16px] text-center">2</span>
+            </a>
+            
+            <!-- Logout Button -->
+            <a href="/users/logout" class="bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 px-2.5 py-1 rounded-md transition-all text-[9px] font-semibold uppercase tracking-wider">
+                Logout
+            </a>
+        </div>
+    </nav>
+
+    <!-- 3. MAIN LAYOUT -->
+    <div class="flex h-[calc(100vh-45px)] overflow-hidden">
+
+        <!-- SIDEBAR (Compact Filters) -->
+        <aside class="w-56 hidden md:flex flex-col border-r border-gray-200 bg-white px-4 py-6 overflow-y-auto scrollbar-thin">
+            
+            <!-- Sort Section -->
+            <div class="mb-6">
+                <h3 class="font-bold text-gray-900 mb-2.5 tracking-wide uppercase text-[9px] text-opacity-70">Sort By</h3>
+                <ul class="space-y-1.5 text-gray-500 text-[10px]">
+                    <li><a href="#" class="block hover:text-blue-600 transition-colors">Newest Items</a></li>
+                    <li><a href="#" class="block hover:text-blue-600 transition-colors">Popular</a></li>
+                    <li><a href="#" class="block hover:text-blue-600 transition-colors">Low to High</a></li>
+                    <li><a href="#" class="block hover:text-blue-600 transition-colors">High to Low</a></li>
+                </ul>
+            </div>
+
+            <!-- Categories -->
+            <div class="mb-6">
+                <h3 class="font-bold text-gray-900 mb-2.5 tracking-wide uppercase text-[9px] text-opacity-70">Categories</h3>
+                <div class="space-y-1.5 text-[10px]">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" class="rounded-sm border-gray-300 text-blue-600 focus:ring-0 w-3 h-3">
+                        <span class="text-gray-500 group-hover:text-blue-600 transition-colors">Men</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" class="rounded-sm border-gray-300 text-blue-600 focus:ring-0 w-3 h-3">
+                        <span class="text-gray-500 group-hover:text-blue-600 transition-colors">Women</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="checkbox" class="rounded-sm border-gray-300 text-blue-600 focus:ring-0 w-3 h-3">
+                        <span class="text-gray-500 group-hover:text-blue-600 transition-colors">Accessories</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Price Range -->
+            <div class="mb-6">
+                <h3 class="font-bold text-gray-900 mb-2.5 tracking-wide uppercase text-[9px] text-opacity-70">Price Range</h3>
+                <div class="flex items-center gap-2">
+                    <div class="relative w-full">
+                        <span class="absolute left-2 top-1.5 text-gray-400 text-[10px]">$</span>
+                        <input type="number" placeholder="0" class="w-full bg-gray-50 border border-gray-200 rounded text-[10px] pl-4 py-1 focus:border-blue-500 focus:ring-0 outline-none transition-colors">
+                    </div>
+                    <span class="text-gray-400 text-[10px]">-</span>
+                    <div class="relative w-full">
+                        <span class="absolute left-2 top-1.5 text-gray-400 text-[10px]">$</span>
+                        <input type="number" placeholder="1000" class="w-full bg-gray-50 border border-gray-200 rounded text-[10px] pl-4 py-1 focus:border-blue-500 focus:ring-0 outline-none transition-colors">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Availability -->
+            <div>
+                <h3 class="font-bold text-gray-900 mb-2.5 tracking-wide uppercase text-[9px] text-opacity-70">Availability</h3>
+                <div class="space-y-1.5 text-[10px]">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="radio" name="availability" class="border-gray-300 text-blue-600 focus:ring-0 w-3 h-3">
+                        <span class="text-gray-500 group-hover:text-blue-600 transition-colors">In Stock</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="radio" name="availability" class="border-gray-300 text-blue-600 focus:ring-0 w-3 h-3">
+                        <span class="text-gray-500 group-hover:text-blue-600 transition-colors">Pre Order</span>
+                    </label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- PRODUCT GRID AREA -->
+        <div class="flex-1 overflow-y-auto bg-gray-50 px-4 py-5">
+            
+            <!-- Grid Density Increased: 4 cols on MD, 5 cols on LG -->
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-x-3 gap-y-5">
+                
+                <!-- Product Card 1 (Static) -->
+                <div class="group relative cursor-pointer">
+                    <div class="w-full aspect-[3/4] bg-blue-50 rounded overflow-hidden relative mb-2 shadow-sm group-hover:shadow transition-all duration-300">
+                        <img class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500" 
+                             src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Nike Shoe">
+                        
+                        <button class="absolute bottom-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out hover:bg-blue-600 hover:text-white">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="max-w-[80%]">
+                            <h3 class="text-gray-900 font-medium text-[11px] truncate pr-1 group-hover:text-blue-600 transition-colors">Nike Air Max</h3>
+                            <p class="text-gray-400 mt-0.5 font-semibold text-[10px]">$ 120</p>
+                        </div>
+                        <div class="flex gap-1 pt-0.5 opacity-50 group-hover:opacity-100 transition-opacity">
+                            <button class="w-4 h-4 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center"><svg class="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 (Static) -->
+                <div class="group relative cursor-pointer">
+                    <div class="w-full aspect-[3/4] bg-yellow-50 rounded overflow-hidden relative mb-2 shadow-sm group-hover:shadow transition-all duration-300">
+                        <img class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500" 
+                             src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Watch">
+                        <button class="absolute bottom-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out hover:bg-blue-600 hover:text-white">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="max-w-[80%]">
+                            <h3 class="text-gray-900 font-medium text-[11px] truncate pr-1 group-hover:text-blue-600 transition-colors">Smart Watch</h3>
+                            <p class="text-gray-400 mt-0.5 font-semibold text-[10px]">$ 250</p>
+                        </div>
+                        <div class="flex gap-1 pt-0.5 opacity-50 group-hover:opacity-100 transition-opacity">
+                            <button class="w-4 h-4 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center"><svg class="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 (Static) -->
+                <div class="group relative cursor-pointer">
+                    <div class="w-full aspect-[3/4] bg-green-50 rounded overflow-hidden relative mb-2 shadow-sm group-hover:shadow transition-all duration-300">
+                        <img class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500" 
+                             src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1000&auto=format&fit=crop" 
+                             alt="Watch">
+                        <button class="absolute bottom-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out hover:bg-blue-600 hover:text-white">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div class="max-w-[80%]">
+                            <h3 class="text-gray-900 font-medium text-[11px] truncate pr-1 group-hover:text-blue-600 transition-colors">Apple Watch</h3>
+                            <p class="text-gray-400 mt-0.5 font-semibold text-[10px]">$ 400</p>
+                        </div>
+                        <div class="flex gap-1 pt-0.5 opacity-50 group-hover:opacity-100 transition-opacity">
+                            <button class="w-4 h-4 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center"><svg class="w-2 h-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT TO AUTO-HIDE SUCCESS MESSAGE -->
+    <script>
+        const flashMsg = document.getElementById('flash-message');
+        if (flashMsg) {
+            setTimeout(() => {
+                flashMsg.style.transition = 'opacity 0.5s ease';
+                flashMsg.style.opacity = '0';
+                setTimeout(() => flashMsg.remove(), 500); // Remove from DOM after fade out
+            }, 2000); // Wait 3 seconds
+        }
+    </script>
+
+</body>
+</html>

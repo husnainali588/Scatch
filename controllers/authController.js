@@ -11,7 +11,8 @@ module.exports.registerUser = async (req, res) => {
 
         const existingUser = await userModel.findOne({ email })
         if (existingUser) {
-            return res.status(401).send({ message: "This email already existed" })
+            req.flash("error", "You already have account, please login")
+            return res.redirect("/")
         }
 
         let hash = await hashedPassword(password)
@@ -23,8 +24,8 @@ module.exports.registerUser = async (req, res) => {
 
         let token = generateToken(user)
         res.cookie("token", token)
-
-        res.status(201).send("user created successfully");
+        req.flash("success","Your account is created, you can login.")
+        res.status(201).redirect("/");
 
     } catch (err) {
         console.error("Critical Registration Error:", err.message);
@@ -36,16 +37,18 @@ module.exports.registerUser = async (req, res) => {
 module.exports.loginUser = async (req, res) => {
     let { email, password } = req.body;
 
+    req.flash("error","Email or Password is incorrect")
+
     let user = await userModel.findOne({ email })
-    if (!user) return res.status(401).send({ message: "Email or Password incorrect!" })
+    if (!user) return res.redirect("/")
 
     bcrypt.compare(password, user.password, (err, result) => {
         if (result) {
             let token = generateToken(user);
             res.cookie("token", token)
-            res.send("You can login")
+            res.render("shop")
         }
-        else return res.status(401).send({ message: "Email or Password incorrect!" })
+        else return res.redirect("/")
     })
 
 }
