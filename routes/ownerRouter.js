@@ -23,8 +23,8 @@ if(process.env.NODE_ENV === "development"){
     })
 }
 
-router.get("/", (req,res) => {
-    res.send("Hello From Owner")
+router.get("/admin", (req,res) => {
+    res.render("admin")
 })
 
 
