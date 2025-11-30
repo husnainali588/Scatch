@@ -24,7 +24,7 @@ module.exports.registerUser = async (req, res) => {
 
         let token = generateToken(user)
         res.cookie("token", token)
-        req.flash("success","Your account is created, you can login.")
+        req.flash("success", "Your account is created, you can login.")
         res.status(201).redirect("/");
 
     } catch (err) {
@@ -37,7 +37,7 @@ module.exports.registerUser = async (req, res) => {
 module.exports.loginUser = async (req, res) => {
     let { email, password } = req.body;
 
-    req.flash("error","Email or Password is incorrect")
+    req.flash("error", "Email or Password is incorrect")
 
     let user = await userModel.findOne({ email })
     if (!user) return res.redirect("/")
@@ -53,7 +53,12 @@ module.exports.loginUser = async (req, res) => {
 
 }
 
-module.exports.logout = (req,res) => {
-    res.cookie("token","")
-    res.redirect("/")
+module.exports.logout = (req, res) => {
+
+    res.cookie("token", "")
+
+    req.session.destroy((err) => {
+        if (err) console.log(err);
+        res.redirect("/");
+    });
 }
