@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatch Cart (Static)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans selection:bg-blue-100 text-xs">
+
+    <nav class="sticky top-0 z-40 w-full bg-gray-50/80 backdrop-blur-md border-b border-gray-200 px-4 py-2.5 flex justify-between items-center">
+        <h1 class="text-base font-bold tracking-tight text-gray-900 cursor-pointer">
+            <span class="text-blue-600">S</span>catch<span class="text-blue-600">.</span>
+        </h1>
+
+        <div class="flex items-center gap-5">
+            <a href="#" class="text-gray-500 hover:text-gray-900 transition-colors font-medium text-[11px]">Home</a>
+            <a href="#" class="text-gray-900 font-medium text-[11px] flex items-center gap-1">
+                Cart
+                <span class="bg-blue-100 text-blue-600 px-1 py-0.5 rounded-full text-[9px] font-bold min-w-[16px] text-center">2</span>
+            </a>
+            <a href="#" class="bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 px-2.5 py-1 rounded-md transition-all text-[9px] font-semibold uppercase tracking-wider">
+                Logout
+            </a>
+        </div>
+    </nav>
+
+    <div class="max-w-screen-lg mx-auto px-4 py-8">
+        
+        <h2 class="text-lg font-bold text-gray-900 mb-5 tracking-tight">Shopping Cart</h2>
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <div class="flex-1 space-y-3">
+                
+                <div class="flex items-start gap-4 bg-white p-3 rounded-lg border border-gray-100 shadow-sm hover:shadow transition-shadow duration-300">
+                    <div class="w-20 h-20 bg-blue-50 rounded-md overflow-hidden flex-shrink-0 relative">
+                         <img class="w-full h-full object-cover mix-blend-multiply" 
+                              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop" 
+                              alt="Nike Shoe">
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-gray-900 text-sm">Nike Air Jordan</h3>
+                                <p class="text-gray-400 text-[10px] mt-0.5">Size: M | Color: Red</p>
+                            </div>
+                            <h4 class="font-bold text-gray-900 text-sm">$ 250</h4>
+                        </div>
+
+                        <div class="flex items-center gap-4 mt-4">
+                            <div class="flex items-center border border-gray-200 rounded overflow-hidden">
+                                <button class="px-2 py-0.5 text-gray-500 hover:bg-gray-50 transition-colors">-</button>
+                                <span class="px-2 py-0.5 text-[10px] font-medium text-gray-700 border-x border-gray-200">1</span>
+                                <button class="px-2 py-0.5 text-gray-500 hover:bg-gray-50 transition-colors">+</button>
+                            </div>
+                            <a href="#" class="text-[10px] font-medium text-red-500 hover:text-red-700 transition-colors uppercase tracking-wide">Remove</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-4 bg-white p-3 rounded-lg border border-gray-100 shadow-sm hover:shadow transition-shadow duration-300">
+                    <div class="w-20 h-20 bg-green-50 rounded-md overflow-hidden flex-shrink-0 relative">
+                         <img class="w-full h-full object-cover mix-blend-multiply" 
+                              src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=1000&auto=format&fit=crop" 
+                              alt="Hoodie">
+                    </div>
+
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-gray-900 text-sm">Essentials Hoodie</h3>
+                                <p class="text-gray-400 text-[10px] mt-0.5">Size: L | Color: Beige</p>
+                            </div>
+                            <h4 class="font-bold text-gray-900 text-sm">$ 100</h4>
+                        </div>
+
+                        <div class="flex items-center gap-4 mt-4">
+                            <div class="flex items-center border border-gray-200 rounded overflow-hidden">
+                                <button class="px-2 py-0.5 text-gray-500 hover:bg-gray-50 transition-colors">-</button>
+                                <span class="px-2 py-0.5 text-[10px] font-medium text-gray-700 border-x border-gray-200">2</span>
+                                <button class="px-2 py-0.5 text-gray-500 hover:bg-gray-50 transition-colors">+</button>
+                            </div>
+                            <a href="#" class="text-[10px] font-medium text-red-500 hover:text-red-700 transition-colors uppercase tracking-wide">Remove</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="w-full lg:w-80 h-fit sticky top-20">
+                <div class="bg-white p-5 rounded-lg border border-gray-100 shadow-sm">
+                    <h3 class="font-bold text-gray-900 text-sm mb-4">Order Summary</h3>
+                    
+                    <div class="space-y-3 border-b border-gray-100 pb-4 mb-4">
+                        <div class="flex justify-between items-center text-[11px]">
+                            <span class="text-gray-500">Subtotal</span>
+                            <span class="font-medium text-gray-900">$ 350</span>
+                        </div>
+                        <div class="flex justify-between items-center text-[11px]">
+                            <span class="text-gray-500">Platform Fee</span>
+                            <span class="font-medium text-gray-900">$ 20</span>
+                        </div>
+                        <div class="flex justify-between items-center text-[11px]">
+                            <span class="text-gray-500">Shipping</span>
+                            <span class="text-green-600 font-medium">Free</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="font-bold text-gray-900 text-sm">Total Amount</span>
+                        <span class="font-bold text-blue-600 text-lg">$ 370</span>
+                    </div>
+
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-md transition-colors shadow-sm shadow-blue-200 text-xs tracking-wide">
+                        Proceed to Checkout
+                    </button>
+                    
+                    <p class="text-[9px] text-gray-400 text-center mt-3">
+                        Secure Checkout - 100% Protected
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

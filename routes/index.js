@@ -16,4 +16,12 @@ router.get("/shop", isloggedin, async (req, res) => {
     res.render("shop", { error, products })
 })
 
+router.get("/cart", isloggedin, async (req, res) => {
+    let user = await userModel.findOne({ email: req.user.email }).populate("cart"); 
+    
+    // Check if cart is populated, calculate bill if needed, or do it in EJS
+    // We will just pass the user object to the page
+    res.render("cart", { user }); 
+});
+
 module.exports = router
