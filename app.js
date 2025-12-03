@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
 app.use("/",index)
-app.use("/owner", ownersRouter);
+app.use("/admin", ownersRouter);
 app.use("/users", usersRouter);
 app.use("/products", productsRouter);
 
