@@ -46,7 +46,7 @@ module.exports.loginUser = async (req, res) => {
         if (result) {
             let token = generateToken(user);
             res.cookie("token", token)
-            res.render("shop")
+            res.redirect("/shop")
         }
         else return res.redirect("/")
     })
