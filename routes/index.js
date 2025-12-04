@@ -11,13 +11,26 @@ router.get("/", (req, res) => {
     res.render("index", { error, success })
 })
 
-
+router.get("/cart/clear", isloggedin, async (req, res) => {
+    try {
+        let user = await userModel.findOne({ email: req.user.email });
+        
+        user.cart = []; 
+        await user.save();
+        
+        req.flash("success", "Cart cleared successfully.");
+        res.redirect("/cart");
+    } catch (err) {
+        req.flash("error", "Error clearing cart.");
+        res.redirect("/cart");
+    }
+});
 
 router.get("/shop", isloggedin, async (req, res) => {
 
-    let success = req.flash("success")
+    // let success = req.flash("success")
     let products = await productModel.find()
-    res.render("shop", { success, products, user: req.user })
+    res.render("shop", { products, user: req.user })
 })
 
 router.get("/cart", isloggedin, async (req, res) => {
@@ -27,7 +40,7 @@ router.get("/cart", isloggedin, async (req, res) => {
 
     // 🧹 AUTO-CLEAN: Filter out items where product is null (deleted products)
     const validCart = user.cart.filter(item => item.product !== null);
-    
+
     // If we found bad items, update the database immediately
     if (user.cart.length !== validCart.length) {
         user.cart = validCart;
@@ -40,24 +53,31 @@ router.get("/cart", isloggedin, async (req, res) => {
 router.get("/addtocart/:id", isloggedin, async (req, res) => {
     try {
         let user = await userModel.findOne({ email: req.user.email });
-        // 1. Check if product is already in cart
-        // We compare IDs as strings to be safe
+
         const itemIndex = user.cart.findIndex(item => item.product.toString() === req.params.id);
+
         if (itemIndex > -1) {
-            // 2. PRODUCT EXISTS: Increment Quantity
             user.cart[itemIndex].quantity += 1;
         } else {
-            // 3. NEW PRODUCT: Push object with ID and default quantity
             user.cart.push({ product: req.params.id, quantity: 1 });
         }
+
         await user.save();
         req.flash("success", "Added to cart");
-        res.redirect("/shop");
+
+        // 🟢 FIX: Redirect back to where the user came from
+        // If 'Referer' is missing (rare), default to '/shop'
+        const previousPage = req.get('Referer') || '/shop';
+        res.redirect(previousPage);
+
     } catch (err) {
         req.flash("error", "Error adding to cart");
-        res.redirect("/shop");
+
+        // Also redirect back on error
+        const previousPage = req.get('Referer') || '/shop';
+        res.redirect(previousPage);
     }
-})
+});
 
 router.get("/cart/remove/:id", isLoggedIn, async (req, res) => {
     try {

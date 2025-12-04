@@ -17,38 +17,6 @@
 
 <body class="bg-gray-50 font-sans selection:bg-blue-100 text-xs">
 
-    <!-- 1. DYNAMIC ERROR MESSAGE (Red) -->
-    <% if(typeof error !=='undefined' && error && error.length> 0){ %>
-        <div class="dismiss-alert fixed top-5 right-5 z-[100] transition-opacity duration-500">
-            <div class="flex items-center gap-2 px-4 py-2 bg-white border border-red-200 rounded-full shadow">
-                <svg class="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span class="text-red-600 font-medium text-xs tracking-wide">
-                    <%= Array.isArray(error) ? error.join(', ') : error %>
-                </span>
-            </div>
-        </div>
-    <% } %>
-
-    <!-- 2. DYNAMIC SUCCESS MESSAGE (Green) -->
-    <!-- This handles "Product Added" -->
-    <% if(typeof success !== ' undefined' && success && success.length> 0){ %>
-                        <div class="dismiss-alert fixed top-5 right-5 z-[100] transition-opacity duration-500">
-                            <div
-                                class="flex items-center gap-2 px-4 py-2 bg-white border border-green-200 rounded-full shadow">
-                                <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg>
-                                <span class="text-green-600 font-medium text-xs tracking-wide">
-                                    <%= Array.isArray(success) ? success.join(', ') : success %>
-                </span>
-            </div>
-        </div>
-    <% } %>
 
             <!-- 2. NAVIGATION BAR (Compact) -->
             <nav
@@ -67,7 +35,7 @@
                         <!-- Check if user exists and has items -->
                         <% if(user && user.cart.length > 0){ %>
                             <span class="bg-blue-100 text-blue-600 px-1 py-0.5 rounded-full text-[9px] font-bold min-w-[16px] text-center">
-                                <%= user.cart.length %> 
+                                <%= user.cart.reduce((total, item) => total + Number(item.quantity), 0) %> 
                             </span>
                         <% } %>
                     </a>
@@ -159,7 +127,7 @@
                                 <div
                                     class="w-full aspect-[3/4] bg-blue-50 rounded overflow-hidden relative mb-2 shadow-sm group-hover:shadow transition-all duration-300">
                                     <img class="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500"
-                                        src="data:image/jpeg;base64, <%= product.image.toString(' base64') %>"
+                                        src="data:image/jpeg;base64, <%= product.image.toString('base64') %>"
                                         alt="Nike Shoe">
 
                                         <a href="/addtocart/<%= product._id %>"
