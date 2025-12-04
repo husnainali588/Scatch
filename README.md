@@ -283,9 +283,7 @@ Products support custom colors stored in the database:
 | Method | Route | Description |
 |--------|-------|-------------|
 | GET | `/cart` | View shopping cart |
-| GET | `/addtocart/:productid` | Add product to cart |
-| POST | `/cart/increment/:id` | Increase quantity |
-| POST | `/cart/decrement/:id` | Decrease quantity |
+| GET | `/addtocart/:id` | Add product to cart |
 | GET | `/cart/remove/:id` | Remove from cart |
 | GET | `/cart/clear` | Clear entire cart |
 | GET | `/users/logout` | User logout |
@@ -293,11 +291,11 @@ Products support custom colors stored in the database:
 ### Admin Routes
 | Method | Route | Description |
 |--------|-------|-------------|
-| GET | `/admin/dashboard` | Admin dashboard |
-| GET | `/admin/inventory` | View all products |
-| POST | `/admin/products/create` | Create new product |
-| GET | `/admin/products/delete/:id` | Delete product |
-| GET | `/admin/costumers` | View all users |
+| GET | `/owner/admin/dashboard` | Admin dashboard |
+| GET | `/owner/admin/inventory` | View all products |
+| POST | `/owner/admin/products/create` | Create new product |
+| GET | `/owner/admin/products/delete/:id` | Delete product |
+| GET | `/owner/admin/costumers` | View all users |
 
 ---
 
