@@ -293,24 +293,24 @@ Products support custom colors stored in the database:
 ### Admin Routes
 | Method | Route | Description |
 |--------|-------|-------------|
-| GET | `/admin` | Admin dashboard |
-| GET | `/admin/products` | View all products |
+| GET | `/admin/dashboard` | Admin dashboard |
+| GET | `/admin/inventory` | View all products |
 | POST | `/admin/products/create` | Create new product |
 | GET | `/admin/products/delete/:id` | Delete product |
-| GET | `/admin/users` | View all users |
+| GET | `/admin/costumers` | View all users |
 
 ---
 
 ## 📸 Screenshots
 
 ### Customer Shop Page
-![Shop Page](https://via.placeholder.com/800x400?text=Shop+Page+Screenshot)
+![Shop Page](./screenshots/shop-page.png)
 
 ### Shopping Cart
-![Cart Page](https://via.placeholder.com/800x400?text=Cart+Page+Screenshot)
+![Cart Page](./screenshots/cart-page.png)
 
 ### Admin Dashboard
-![Admin Panel](https://via.placeholder.com/800x400?text=Admin+Panel+Screenshot)
+![Admin Panel](./screenshots/admin-page.png)
 
 ---
 
@@ -365,18 +365,13 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📝 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
 
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+- GitHub: [@yourusername](https://github.com/husnainali588)
+- LinkedIn: [Your LinkedIn](www.linkedin.com/in/husnain-ali-25a437302)
+- Email: husnainalimughal588@gmail.com
 
 ---
 
