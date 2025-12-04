@@ -310,7 +310,7 @@ Products support custom colors stored in the database:
 ![Cart Page](./screenshots/cart-page.png)
 
 ### Admin Dashboard
-![Admin Panel](./screenshots/admin-page.png)
+![Admin Panel](./screenshots/admin-dashboard.png)
 
 ---
 
