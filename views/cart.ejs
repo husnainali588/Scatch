@@ -14,42 +14,42 @@
     </style>
 </head>
 
-<body class="bg-gray-50 font-sans selection:bg-blue-100 text-xs text-gray-700">
+<body class="bg-gray-50 font-sans selection:bg-blue-100 text-base text-gray-700">
 
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION (Scaled Up) -->
     <nav
-        class="sticky top-0 z-40 w-full bg-gray-50/80 backdrop-blur-md border-b border-gray-200 px-4 py-2.5 flex justify-between items-center transition-all duration-300">
-        <h1 class="text-base font-bold tracking-tight text-gray-900 cursor-pointer">
+        class="sticky top-0 z-40 w-full bg-gray-50/80 backdrop-blur-md border-b border-gray-200 px-8 py-5 flex justify-between items-center transition-all duration-300">
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900 cursor-pointer">
             <span class="text-blue-600">S</span>catch<span class="text-blue-600">.</span>
         </h1>
 
-        <div class="flex items-center gap-5">
-            <a href="/shop" class="text-gray-900 font-medium text-[11px] transition-colors">Home</a>
-            <a href="/cart" class="text-gray-900 font-medium text-[11px] flex items-center gap-1">
+        <div class="flex items-center gap-8">
+            <a href="/shop" class="text-gray-900 font-medium text-base transition-colors hover:text-blue-600">Home</a>
+            <a href="/cart" class="text-gray-900 font-medium text-base flex items-center gap-2">
                 Cart
                 <% if(user && user.cart.length> 0){ %>
                     <span
-                        class="bg-blue-100 text-blue-600 px-1 py-0.5 rounded-full text-[9px] font-bold min-w-[16px] text-center">
+                        class="bg-blue-100 text-blue-600 px-2.5 py-0.5 rounded-full text-sm font-bold min-w-[24px] text-center">
                         <%= user.cart.reduce((total, item)=> total + Number(item.quantity), 0) %>
                     </span>
                     <% } %>
             </a>
             <a href="/users/logout"
-                class="bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 px-2.5 py-1 rounded-md transition-all text-[9px] font-semibold uppercase tracking-wider">
+                class="bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 px-5 py-2.5 rounded-lg transition-all text-sm font-bold uppercase tracking-wider">
                 Logout
             </a>
         </div>
     </nav>
 
     <!-- MAIN CART AREA -->
-    <div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="max-w-7xl mx-auto px-8 py-12">
 
-        <h2 class="text-base font-bold text-gray-900 mb-5 tracking-tight">Shopping Cart</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-10 tracking-tight">Shopping Cart</h2>
 
-        <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex flex-col lg:flex-row gap-12">
 
             <!-- LEFT SIDE: CART ITEMS -->
-            <div class="flex-1 space-y-3">
+            <div class="flex-1 space-y-6">
 
                 <% if(user.cart.length> 0) { %>
                     <% user.cart.forEach( (item)=> { %>
@@ -62,56 +62,64 @@
                                 dateObj.getSeconds().toString().padStart(2, '0' ); %>
 
                                 <div
-                                    class="flex items-start gap-4 bg-white p-3 rounded-lg border border-gray-200 shadow-sm hover:shadow transition-shadow duration-300">
+                                    class="flex items-start gap-8 bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+
+                                    <!-- Product Image (Increased to w-32 / 128px) -->
                                     <div
-                                        class="w-20 h-20 rounded-md overflow-hidden flex-shrink-0 relative border border-gray-100">
-                                        <img class="w-full h-full object-cover mix-blend-multiply opacity-90"
+                                        class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0 relative border border-gray-100">
+                                        <img class="w-full h-full object-cover mix-blend-multiply opacity-95"
                                             src="data:image/jpeg;base64, <%= item.product.image.toString('base64') %>"
                                             alt="<%= item.product.name %>">
                                     </div>
 
-                                    <div class="flex-1">
+                                    <!-- Product Info -->
+                                    <div class="flex-1 py-1">
                                         <div class="flex justify-between items-start">
                                             <div>
-                                                <h3 class="font-semibold text-gray-900 text-xs">
+                                                <h3 class="font-bold text-gray-900 text-xl mb-2">
                                                     <%= item.product.name %>
                                                 </h3>
-                                                <div class="flex items-center gap-2 mt-1">
-                                                    <span class="text-[9px] px-1.5 py-0.5  text-gray-500 font-mono">
+
+                                                <div class="flex items-center gap-3">
+                                                    <span class="text-sm px-2.5 py-1 text-gray-500 font-mono">
                                                         #<%= timeCode %>
                                                     </span>
 
                                                 </div>
                                             </div>
+
                                             <div class="text-right">
                                                 <% if(Number(item.product.discount)> 0) { %>
                                                     <p
-                                                        class="text-[9px] text-gray-400 line-through decoration-gray-300">
+                                                        class="text-sm text-gray-400 line-through decoration-gray-300 mb-1">
                                                         Rs <%= Number(item.product.price) +
                                                             Number(item.product.discount) %>
                                                     </p>
                                                     <% } %>
-                                                        <h4 class="font-bold text-gray-900 text-xs">
+                                                        <h4 class="font-bold text-gray-900 text-xl">
                                                             Rs <%= item.product.price %>
                                                         </h4>
                                             </div>
                                         </div>
 
-                                        <div class="flex items-center justify-between mt-3">
+                                        <div class="flex items-center justify-between mt-8">
+                                            <!-- Quantity Controls (Larger) -->
                                             <div
-                                                class="flex items-center border border-gray-200 rounded overflow-hidden">
+                                                class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
                                                 <a href="/cart/remove/<%= item.product._id %>"
-                                                    class="px-2.5 py-1 text-gray-500 hover:bg-gray-100 hover:text-red-500 transition-colors bg-gray-50 text-[10px] font-bold">-</a>
+                                                    class="px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-red-600 transition-colors bg-gray-50 text-lg font-bold">-</a>
                                                 <span
-                                                    class="px-3 py-1 text-[10px] font-semibold text-gray-700 bg-white border-x border-gray-200 min-w-[24px] text-center">
+                                                    class="px-5 py-2 text-base font-semibold text-gray-900 bg-white border-x border-gray-200 min-w-[50px] text-center">
                                                     <%= item.quantity %>
                                                 </span>
                                                 <a href="/addtocart/<%= item.product._id %>"
-                                                    class="px-2.5 py-1 text-gray-500 hover:bg-gray-100 hover:text-blue-500 transition-colors bg-gray-50 text-[10px] font-bold">+</a>
+                                                    class="px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors bg-gray-50 text-lg font-bold">+</a>
                                             </div>
-                                            <span class="text-[9px] font-medium text-gray-400">
-                                                Total: <span class="text-gray-700">Rs <%= item.product.price *
-                                                        item.quantity %></span>
+
+                                            <!-- Item Total -->
+                                            <span class="text-sm font-medium text-gray-500">
+                                                Item Total: <span class="text-gray-900 font-bold text-base">Rs <%=
+                                                        item.product.price * item.quantity %></span>
                                             </span>
                                         </div>
                                     </div>
@@ -122,22 +130,22 @@
                                         <% } else { %>
                                             <!-- Empty Cart State -->
                                             <div
-                                                class="flex flex-col items-center justify-center py-12 bg-white border border-dashed border-gray-200 rounded-lg text-gray-400">
-                                                <span class="text-3xl mb-3 opacity-30 grayscale">🛒</span>
-                                                <p class="font-medium text-[10px]">Your cart is currently empty.</p>
+                                                class="flex flex-col items-center justify-center py-24 bg-white border-2 border-dashed border-gray-300 rounded-2xl text-gray-400">
+                                                <span class="text-6xl mb-6 opacity-30 grayscale">🛒</span>
+                                                <p class="font-medium text-xl">Your cart is currently empty.</p>
                                                 <a href="/shop"
-                                                    class="mt-2 text-blue-600 hover:underline text-[10px]">Go
-                                                    Shopping</a>
+                                                    class="mt-4 text-blue-600 hover:underline text-base font-medium">Start
+                                                    Shopping Now</a>
                                             </div>
                                             <% } %>
 
             </div>
 
-            <!-- RIGHT SIDE: ORDER SUMMARY -->
+            <!-- RIGHT SIDE: ORDER SUMMARY (Scaled Up) -->
             <% if(user.cart.length> 0) { %>
-                <div class="w-full lg:w-72 h-fit sticky top-20">
-                    <div class="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
-                        <h3 class="font-bold text-gray-900 text-xs mb-4 uppercase tracking-wide opacity-80">Order
+                <div class="w-full lg:w-96 h-fit sticky top-28">
+                    <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
+                        <h3 class="font-bold text-gray-900 text-lg mb-6 uppercase tracking-wide opacity-90">Order
                             Summary</h3>
 
                         <% let subtotal=0; let totalSavings=0; user.cart.forEach(item=> {
@@ -151,52 +159,94 @@
                             let total = subtotal + platformFee;
                             %>
 
-                            <div class="space-y-2.5 border-b border-gray-100 pb-4 mb-4">
-                                <div class="flex justify-between items-center text-[10px]">
-                                    <span class="text-gray-500">Subtotal</span>
+                            <div class="space-y-4 border-b border-gray-100 pb-6 mb-6">
+                                <div class="flex justify-between items-center text-base text-gray-600">
+                                    <span>Subtotal</span>
                                     <span class="font-medium text-gray-900">Rs <%= subtotal %></span>
                                 </div>
-                                <div class="flex justify-between items-center text-[10px]">
-                                    <span class="text-gray-500">Platform Fee</span>
+                                <div class="flex justify-between items-center text-base text-gray-600">
+                                    <span>Platform Fee</span>
                                     <span class="font-medium text-gray-900">Rs <%= platformFee %></span>
                                 </div>
-                                <div class="flex justify-between items-center text-[10px]">
-                                    <span class="text-gray-500">Shipping</span>
+                                <div class="flex justify-between items-center text-base text-gray-600">
+                                    <span>Shipping</span>
                                     <span class="text-green-600 font-medium">Free</span>
                                 </div>
                                 <% if(totalSavings> 0) { %>
                                     <div
-                                        class="flex justify-between items-center text-[10px] text-green-600 pt-1 border-t border-dashed border-gray-100 mt-1">
+                                        class="flex justify-between items-center text-base text-green-600 pt-3 border-t border-dashed border-gray-100 mt-3">
                                         <span>Total Savings</span>
                                         <span class="font-bold">- Rs <%= totalSavings %></span>
                                     </div>
                                     <% } %>
                             </div>
 
-                            <div class="flex justify-between items-center mb-6">
-                                <span class="font-bold text-gray-900 text-xs">Total Amount</span>
-                                <span class="font-bold text-blue-600 text-sm">Rs <%= total %></span>
+                            <div class="flex justify-between items-center mb-8">
+                                <span class="font-bold text-gray-900 text-lg">Total Amount</span>
+                                <span class="font-bold text-blue-600 text-2xl">Rs <%= total %></span>
                             </div>
 
                             <button
-                                class="w-full bg-gray-900 hover:bg-black text-white font-medium py-2.5 rounded-md transition-all shadow-sm text-[10px] tracking-wide uppercase">
+                                class="w-full bg-gray-900 hover:bg-black text-white font-bold py-4 rounded-xl transition-all shadow-md text-sm tracking-wide uppercase">
                                 Proceed to Checkout
                             </button>
 
                             <a href="/shop"
-                                class="block w-full mt-2 py-2 rounded-md border border-gray-200 text-gray-500 font-medium text-[10px] tracking-wide text-center hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                                class="block w-full mt-4 py-3.5 rounded-xl border border-gray-300 text-gray-600 font-medium text-sm tracking-wide text-center hover:bg-gray-50 hover:text-gray-900 transition-colors">
                                 Continue Shopping
                             </a>
 
                             <a href="/cart/clear"
-                                class="block w-full mt-2 py-2 rounded-md border border-red-100 text-red-500 font-medium text-[10px] tracking-wide text-center hover:bg-red-50 hover:text-red-600 transition-colors">
+                                class="block w-full mt-4 py-3.5 rounded-xl border border-red-100 text-red-500 font-medium text-sm tracking-wide text-center hover:bg-red-50 hover:text-red-600 transition-colors">
                                 Clear Cart
                             </a>
 
-                            <div class="mt-4 flex justify-center gap-2 opacity-50 grayscale">
-                                <div class="w-6 h-4 bg-gray-200 rounded-sm"></div>
-                                <div class="w-6 h-4 bg-gray-200 rounded-sm"></div>
-                                <div class="w-6 h-4 bg-gray-200 rounded-sm"></div>
+                            <div class="mt-8 flex justify-center gap-4 opacity-100 grayscale-0 transition-opacity">
+                                <!-- Visa -->
+                                <svg class="h-8 w-auto" viewBox="0 0 48 48" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M45 4H3C1.89543 4 1 4.89543 1 6V42C1 43.1046 1.89543 44 3 44H45C46.1046 44 47 43.1046 47 42V6C47 4.89543 46.1046 4 45 4Z"
+                                        fill="white" stroke="#E5E7EB" stroke-width="2" />
+                                    <path d="M19.795 16.2422H23.2345L21.0864 29.7333H17.6469L19.795 16.2422Z"
+                                        fill="#1A1F71" />
+                                    <path
+                                        d="M32.2039 16.8624C31.1396 16.4294 29.4497 16.0654 27.3984 16.0654C22.1131 16.0654 18.3699 18.8946 18.3315 22.972C18.3315 25.9581 21.0211 27.6121 23.0738 28.6284C25.1867 29.6765 25.8925 30.3362 25.8925 31.3005C25.8925 32.7986 24.0925 33.4608 22.4025 33.4608C20.8286 33.4608 19.0265 33.0025 17.6452 32.365L16.9701 35.5194C18.4151 36.1959 21.1165 36.7642 23.9439 36.7642C29.5067 36.7642 33.1412 34.0205 33.1785 29.7671C33.1785 27.1025 31.5067 25.0414 27.4639 23.0996C25.3441 22.0317 24.059 21.372 24.059 20.3534C24.059 19.1331 25.3758 18.6235 26.8521 18.6235C28.1385 18.6235 29.9975 18.9288 31.4651 19.5912L32.2039 16.8624Z"
+                                        fill="#1A1F71" />
+                                    <path
+                                        d="M40.4536 29.1508C40.6141 28.0315 41.1602 25.0714 41.1602 25.0714L40.0362 19.6403L37.2081 33.5267H40.9356L40.4536 29.1508Z"
+                                        fill="#1A1F71" />
+                                    <path
+                                        d="M13.0179 16.2422H9.67426C9.28837 16.2422 8.96728 16.4696 8.83878 16.7755L5.24023 33.5267H8.87094L9.57823 29.6025H14.3989L14.8489 33.5267H18.2916L15.914 21.656C15.6886 20.6375 15.2709 19.3676 14.8526 18.3221C14.3064 17.0482 13.6918 16.2422 13.0179 16.2422ZM12.8256 19.6151C13.0499 20.3534 13.8206 24.2582 13.8206 24.2582L10.5419 24.2253L12.8256 19.6151Z"
+                                        fill="#1A1F71" />
+                                    <path
+                                        d="M44.9303 16.2422H41.8997C40.9683 16.2422 40.2614 16.5224 39.9084 17.3615L34.0586 31.271L31.4219 16.2422H27.8525L32.3862 36.4846L33.4151 41.624L44.9303 16.2422Z"
+                                        fill="#1A1F71" />
+                                </svg>
+                                <!-- Mastercard -->
+                                <svg class="h-8 w-auto" viewBox="0 0 48 48" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M45 4H3C1.89543 4 1 4.89543 1 6V42C1 43.1046 1.89543 44 3 44H45C46.1046 44 47 43.1046 47 42V6C47 4.89543 46.1046 4 45 4Z"
+                                        fill="white" stroke="#E5E7EB" stroke-width="2" />
+                                    <path
+                                        d="M19 24C19 28.6958 20.4087 33.0066 22.8126 36.5345C20.6182 37.4889 18.1772 38.0274 15.5988 38.0274C7.84977 38.0274 1.5708 31.7275 1.5708 24C1.5708 16.2725 7.84977 9.97266 15.5988 9.97266C18.1772 9.97266 20.6182 10.5111 22.8126 11.4655C20.4087 14.9934 19 19.3042 19 24Z"
+                                        fill="#EB001B" />
+                                    <path
+                                        d="M32.4012 38.0274C29.8228 38.0274 27.3818 37.4889 25.1874 36.5345C27.5913 33.0066 29 28.6958 29 24C29 19.3042 27.5913 14.9934 25.1874 11.4655C27.3818 10.5111 29.8228 9.97266 32.4012 9.97266C40.1502 9.97266 46.4292 16.2725 46.4292 24C46.4292 31.7275 40.1502 38.0274 32.4012 38.0274Z"
+                                        fill="#F79E1B" />
+                                    <path
+                                        d="M25.1874 11.4655C27.5913 14.9934 29 19.3042 29 24C29 28.6958 27.5913 33.0066 25.1874 36.5345C22.8126 33.0066 21.4087 28.6958 21.4087 24C21.4087 19.3042 22.8126 14.9934 25.1874 11.4655Z"
+                                        fill="#FF5F00" />
+                                </svg>
+                                <!-- Amex -->
+                                <svg class="h-8 w-auto" viewBox="0 0 48 48" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="1" y="6" width="46" height="36" rx="3" fill="#2563EB" />
+                                    <path
+                                        d="M8.48557 25.2956L9.99083 17.9319H14.7202L14.015 22.6231H12.6398L12.842 20.8385H11.3963L10.6116 25.2956H8.48557ZM23.8141 25.2956L25.3193 17.9319H28.4382L29.7663 21.9989L31.7339 17.9319H34.744L30.8409 25.2956H28.4899L27.3965 22.0923L25.9401 25.2956H23.8141ZM15.3128 25.2956L16.8181 17.9319H20.0275L20.8122 20.9342L22.5614 17.9319H25.181L22.5967 21.889L25.1622 25.2956H22.4061L20.9886 22.882L20.4264 25.2956H15.3128ZM32.6146 25.2956L34.1199 17.9319H38.8492L38.2093 21.3912H36.4896L36.6919 20.0161H38.5081L38.1411 18.7855H36.9789L36.7954 19.4161L35.3769 25.2956H32.6146ZM38.734 25.2956L39.0939 23.1557H40.8982L39.8584 25.2956H38.734Z"
+                                        fill="white" />
+                                </svg>
                             </div>
                     </div>
                 </div>

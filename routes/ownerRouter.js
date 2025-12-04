@@ -4,6 +4,7 @@ const ownerModel = require("../models/owner-model")
 const productModel = require("../models/product-model")
 const userModel = require("../models/user-model")
 const { loginOwner, ownerlogout } = require("../controllers/authController")
+const isOwner = require("../middlewares/isOwner");
 
 if (process.env.NODE_ENV === "development") {
     router.post("/create", async (req, res) => {
@@ -34,19 +35,19 @@ router.get("/admin", (req, res) => {
 
 router.post("/login", loginOwner)
 
-router.get("/admin/dashboard", (req, res) => {
+router.get("/admin/dashboard",isOwner, (req, res) => {
     let success = req.flash("success")
     let error = req.flash("error")
     res.render("admin-dashboard", { success, error })
 })
 
-router.get("/admin/inventory", async (req, res) => {
+router.get("/admin/inventory",isOwner, async (req, res) => {
     let success = req.flash("success");
     let products = await productModel.find(); 
     res.render("admin-inventory", { products, success });
 });
 
-router.get("/admin/costumers", async (req, res) => {
+router.get("/admin/costumers",isOwner, async (req, res) => {
     let success = req.flash("success");
     let users = await userModel.find(); 
     res.render("admin-costumers", { users, success });

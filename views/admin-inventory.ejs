@@ -17,167 +17,157 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+    <style> body { font-family: 'Inter', sans-serif; } </style>
 </head>
 
-<body class="bg-gray-50 font-sans text-[10px] text-gray-700 selection:bg-blue-100">
+<body class="bg-gray-50 font-sans text-sm text-gray-700 selection:bg-blue-100">
 
     <!-- DYNAMIC ALERTS -->
-    <% if(typeof success !=='undefined' && success && success.length> 0){ %>
-        <div id="flash-message" class="fixed top-5 right-5 z-[100]">
-            <div class="flex items-center gap-2 px-4 py-2 bg-white border border-green-200 rounded-full shadow-sm">
-                <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-green-600 font-medium text-[10px] tracking-wide">
-                    <%= Array.isArray(success) ? success.join(' ') : success %></span>
+    <% if(typeof success !== 'undefined' && success && success.length > 0){ %>
+        <div id="flash-message" class="fixed top-6 right-6 z-[100]">
+            <div class="flex items-center gap-3 px-5 py-3 bg-white border border-green-200 rounded-full shadow-md">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-green-600 font-medium text-sm tracking-wide"><%= Array.isArray(success) ? success.join(' ') : success %></span>
             </div>
         </div>
     <% } %>
 
     <div class="min-h-screen flex">
 
-        <!-- SIDEBAR (Consistent) -->
-        <aside class="w-52 bg-white border-r border-gray-200 flex flex-col fixed h-full z-10">
-            <div class="px-5 py-4 border-b border-gray-100">
-                <h1 class="text-sm font-bold tracking-tight text-gray-900">
-                    <span class="text-blue-600">S</span>catch<span class="text-gray-400 font-medium ml-1 text-[9px]">Admin</span>
+        <!-- SIDEBAR -->
+        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col fixed h-full z-10">
+            <div class="px-6 py-6 border-b border-gray-100">
+                <h1 class="text-xl font-bold tracking-tight text-gray-900">
+                    <span class="text-blue-600">S</span>catch<span class="text-gray-400 font-medium ml-2 text-xs">Admin</span>
                 </h1>
             </div>
-            <nav class="flex-1 px-3 py-4 space-y-1">
-                <a href="/owner/admin/dashboard" class="flex items-center gap-2.5 px-3 py-2 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors text-[10px]">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <a href="/owner/admin/dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                     Create Product
                 </a>
                 <!-- Active State -->
-                <a href="/owner/admin/inventory" class="flex items-center gap-2.5 px-3 py-2 text-gray-900 bg-gray-50 border border-gray-200/50 rounded-md font-medium transition-colors text-[10px]">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                <a href="/owner/admin/inventory" class="flex items-center gap-3 px-4 py-3 text-gray-900 bg-gray-50 border border-gray-200/50 rounded-lg font-medium transition-colors text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
                     All Products
                 </a>
-                <a href="/owner/admin/costumers" class="flex items-center gap-2.5 px-3 py-2 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors text-[10px]">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
-                    Costumers
+                <a href="/owner/admin/costumers" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    Customers
                 </a>
             </nav>
-            <div class="p-4 border-t border-gray-100">
-                <a href="/owner/admin/logout" class="flex items-center gap-2 text-red-500 hover:text-red-700 transition-colors font-medium text-[10px]">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            <div class="p-6 border-t border-gray-100">
+                <a href="/admin/logout" class="flex items-center gap-3 text-red-500 hover:text-red-700 transition-colors font-medium text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                     Logout
                 </a>
             </div>
         </aside>
 
         <!-- CONTENT AREA -->
-        <main class="flex-1 ml-52 p-8">
-            <div class="max-w-5xl mx-auto">
+        <main class="flex-1 ml-64 p-10">
+            <div class="max-w-6xl mx-auto">
                 
-                <div class="flex items-end justify-between mb-6">
+                <div class="flex items-end justify-between mb-8">
                     <div>
-                        <h2 class="text-base font-bold text-gray-900 mb-0.5">Product Inventory</h2>
-                        <p class="text-gray-400 text-[10px]">Manage store catalog and stock.</p>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-1">Product Inventory</h2>
+                        <p class="text-gray-500 text-sm">Manage store catalog and stock.</p>
                     </div>
-                    <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded text-[9px] font-bold">
+                    <span class="bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg text-sm font-bold border border-blue-100">
                         Total Items: <%= products ? products.length : 0 %>
                     </span>
                 </div>
 
                 <!-- PRODUCT LIST (Table View) -->
-                <div class="bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden">
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                     
                     <% if(products && products.length > 0) { %>
                         <table class="w-full text-left border-collapse">
                             <thead class="bg-gray-50 border-b border-gray-200">
                                 <tr>
-                                    <th class="px-5 py-3 text-[9px] font-semibold text-gray-500 uppercase tracking-wider">Image</th>
-                                    <th class="px-5 py-3 text-[9px] font-semibold text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th class="px-5 py-3 text-[9px] font-semibold text-gray-500 uppercase tracking-wider">Price</th>
-                                    <th class="px-5 py-3 text-[9px] font-semibold text-gray-500 uppercase tracking-wider">Colors</th>
-                                    <th class="px-5 py-3 text-[9px] font-semibold text-gray-500 uppercase tracking-wider text-right">Action</th>
+                                    <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Image</th>
+                                    <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Price</th>
+                                    <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-100">
                                 <% products.forEach(function(product){ %>
+                                    
+                                    <% 
+                                        // 🟢 ADDED: Timestamp Logic from Cart
+                                        let dateObj = new Date(parseInt(product._id.toString().substring(0, 8), 16) * 1000);
+                                        let timeCode = dateObj.getHours().toString().padStart(2, '0') + 
+                                                       dateObj.getMinutes().toString().padStart(2, '0') + 
+                                                       dateObj.getSeconds().toString().padStart(2, '0');
+                                    %>
+
                                     <tr class="hover:bg-gray-50/50 transition-colors group">
                                         <!-- Image -->
-                                        <td class="px-5 py-3">
-                                            <div class="w-10 h-10 rounded overflow-hidden bg-gray-100 border border-gray-100">
-                                                <img src="data:image/jpeg;base64, <%= product.image.toString('base64')
-                        %>"
-                        class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:opacity-100
-                        transition-opacity">
-            </div>
-            </td>
+                                        <td class="px-6 py-4">
+                                            <div class="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 border border-gray-100">
+                                                <img src="data:image/jpeg;base64, <%= product.image.toString('base64') %>" 
+                                                     class="w-full h-full object-cover mix-blend-multiply opacity-80 group-hover:opacity-100 transition-opacity">
+                                            </div>
+                                        </td>
+                                        
+                                        <!-- Name -->
+                                        <td class="px-6 py-4">
+                                            <span class="font-medium text-gray-900 text-sm"><%= product.name %></span>
+                                            <!-- 🟢 UPDATED: Shows Time Code instead of Hex ID -->
+                                            <span class="block text-gray-500 text-xs mt-0.5 font-mono">#<%= timeCode %></span>
+                                        </td>
+                                        
+                                        <!-- Price -->
+                                        <td class="px-6 py-4">
+                                            <div class="flex flex-col">
+                                                <span class="text-gray-900 font-medium text-sm">Rs<%= product.price %></span>
+                                                <% if(product.discount > 0) { %>
+                                                    <span class="text-green-600 text-xs line-through decoration-green-200">Rs<%= Number(product.price) + Number(product.discount) %></span>
+                                                <% } %>
+                                            </div>
+                                        </td>
 
-            <!-- Name -->
-            <td class="px-5 py-3">
-                <span class="font-medium text-gray-900 text-[11px]">
-                    <%= product.name %>
-                </span>
-                <span class="block text-gray-400 text-[9px]">ID: <%= product._id.toString().substring(0,8) %>...</span>
-            </td>
 
-            <!-- Price -->
-            <td class="px-5 py-3">
-                <div class="flex flex-col">
-                    <span class="text-gray-900 font-medium">$<%= product.price-product.discount %></span>
-                    <% if(product.discount> 0) { %>
-                        <span class="text-green-600 text-[9px] line-through decoration-green-200">$<%=
-                                product.price %></span>
-                        <% } %>
-                </div>
-            </td>
-
-            <!-- Actions -->
-            <td class="px-5 py-3 text-right">
-                <form action="/products/delete/<%= product._id %>" method="post" class="inline-block"
-                    onsubmit="return confirm('Are you sure you want to delete <%= product.name %>?');">
-                    <button type="submit"
-                        class="text-red-400 hover:text-red-600 hover:bg-red-50 p-1.5 rounded-md transition-all">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                            </path>
-                        </svg>
-                    </button>
-                </form>
-            </td>
-            </tr>
-            <% }) %>
-                </tbody>
-                </table>
-                <% } else { %>
-                    <!-- Empty State -->
-                    <div class="flex flex-col items-center justify-center py-12">
-                        <span class="text-3xl mb-3 opacity-30 grayscale">📦</span>
-                        <p class="text-gray-400 font-medium">Your inventory is empty.</p>
-                        <a href="/owner/admin/dashboard"
-                            class="mt-3 text-blue-600 hover:text-blue-700 font-medium hover:underline transition-all">
-                            Add your first product
-                        </a>
-                    </div>
+                                        <!-- Actions -->
+                                        <td class="px-6 py-4 text-right">
+                                            <form action="/products/delete/<%= product._id %>" method="post" class="inline-block"
+                                                  onsubmit="return confirm('Are you sure you want to delete <%= product.name %>?');">
+                                                <button type="submit" class="text-red-400 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-all" title="Delete Product">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    <% } else { %>
+                        <!-- Empty State -->
+                        <div class="flex flex-col items-center justify-center py-16">
+                            <span class="text-5xl mb-4 opacity-30 grayscale">📦</span>
+                            <p class="text-gray-500 font-medium text-base">Your inventory is empty.</p>
+                            <a href="/owner/admin/dashboard" class="mt-4 text-blue-600 hover:text-blue-700 font-medium hover:underline transition-all text-sm">
+                                Add your first product
+                            </a>
+                        </div>
                     <% } %>
-        </div>
+                </div>
 
-        </div>
+            </div>
         </main>
-        </div>
+    </div>
 
-        <!-- AUTO-HIDE SCRIPT -->
-        <script>
-            const flashMsg = document.getElementById('flash-message');
-            if (flashMsg) {
-                setTimeout(() => {
-                    flashMsg.style.transition = 'opacity 0.5s ease';
-                    flashMsg.style.opacity = '0';
-                    setTimeout(() => flashMsg.remove(), 500);
-                }, 3000);
-            }
-        </script>
+    <script>
+        const flashMsg = document.getElementById('flash-message');
+        if (flashMsg) {
+            setTimeout(() => {
+                flashMsg.style.transition = 'opacity 0.5s ease';
+                flashMsg.style.opacity = '0';
+                setTimeout(() => flashMsg.remove(), 500);
+            }, 3000); 
+        }
+    </script>
 
 </body>
-
 </html>

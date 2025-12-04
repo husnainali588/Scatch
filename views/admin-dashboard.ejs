@@ -10,128 +10,111 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    fontSize: {
-                        'xxs': '0.65rem',
-                    },
-                    colors: {
-                        brand: {
-                            blue: '#3b82f6',
-                            dark: '#1f2937',
-                        }
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: { brand: { blue: '#3b82f6', dark: '#1f2937' } }
                 }
             }
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <style> body { font-family: 'Inter', sans-serif; } </style>
 </head>
 
-<body class="bg-gray-50 font-sans selection:bg-blue-100 text-[10px] text-gray-700">
+<body class="bg-gray-50 font-sans text-sm text-gray-700 selection:bg-blue-100">
 
+    <!-- DYNAMIC ALERTS -->
     <% if(typeof success !== 'undefined' && success && success.length > 0){ %>
-        <div id="flash-message" class="fixed top-5 right-5 z-[100]">
-            <div class="flex items-center gap-2 px-4 py-2 bg-white border border-green-200 rounded-full shadow-sm">
-                <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                </svg>
-                <span class="text-green-600 font-medium text-[10px] tracking-wide">
-                    <%= Array.isArray(success) ? success.join(', ') : success %>
-                </span>
+        <div id="flash-message" class="fixed top-6 right-6 z-[100]">
+            <div class="flex items-center gap-3 px-5 py-3 bg-white border border-green-200 rounded-full shadow-md">
+                <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-green-600 font-medium text-sm tracking-wide"><%= Array.isArray(success) ? success.join(' ') : success %></span>
             </div>
         </div>
     <% } %>
 
     <div class="min-h-screen flex">
 
-        <aside class="w-52 bg-white border-r border-gray-200 flex flex-col fixed h-full z-10">
-            <div class="px-5 py-4 border-b border-gray-100">
-                <h1 class="text-sm font-bold tracking-tight text-gray-900">
-                    <span class="text-blue-600">S</span>catch<span class="text-gray-400 font-medium ml-1 text-[9px]">Admin</span>
+        <!-- SIDEBAR (Standard Width) -->
+        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col fixed h-full z-10">
+            <div class="px-6 py-6 border-b border-gray-100">
+                <h1 class="text-xl font-bold tracking-tight text-gray-900">
+                    <span class="text-blue-600">S</span>catch<span class="text-gray-400 font-medium ml-2 text-xs">Admin</span>
                 </h1>
             </div>
-
-            <nav class="flex-1 px-3 py-4 space-y-1">
-                <a href="/owner/admin/dashboard" class="flex items-center gap-2.5 px-3 py-2 text-gray-900 bg-gray-50 rounded-md font-medium transition-colors border border-gray-200/50 text-[10px]">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+            <nav class="flex-1 px-4 py-6 space-y-2">
+                <!-- Active State -->
+                <a href="/owner/admin/dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-900 bg-gray-50 border border-gray-200/50 rounded-lg font-medium transition-colors text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                     Create Product
                 </a>
-                <a href="/owner/admin/inventory" class="flex items-center gap-2.5 px-3 py-2 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors text-[10px]">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                <a href="/owner/admin/inventory" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
                     All Products
                 </a>
-                <a href="/owner/admin/costumers" class="flex items-center gap-2.5 px-3 py-2 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium transition-colors text-[10px]">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
-                    Costumers
+                <a href="/owner/admin/costumers" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-lg font-medium transition-colors text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    Customers
                 </a>
-                
             </nav>
-
-            <div class="p-4 border-t border-gray-100">
-                <a href="/owner/admin/logout" class="flex items-center gap-2 text-red-500 hover:text-red-700 transition-colors font-medium text-[10px]">
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            <div class="p-6 border-t border-gray-100">
+                <a href="/admin/logout" class="flex items-center gap-3 text-red-500 hover:text-red-700 transition-colors font-medium text-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                     Logout
                 </a>
             </div>
         </aside>
 
-        <main class="flex-1 ml-52 p-8">
+        <!-- CONTENT AREA -->
+        <main class="flex-1 ml-64 p-10">
             
-            <div class="max-w-2xl mx-auto">
-                <h2 class="text-base font-bold text-gray-900 mb-0.5">Create New Product</h2>
-                <p class="text-gray-400 mb-6 text-[10px]">Add details for a new item in your store.</p>
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Create New Product</h2>
+                <p class="text-gray-500 mb-8 text-sm">Add details for a new item in your store.</p>
 
-                <form action="/products/create" autocomplete="off" method="post" enctype="multipart/form-data" class="space-y-6">
+                <!-- CREATE PRODUCT FORM -->
+                <form action="/products/create" autocomplete="off" method="post" enctype="multipart/form-data" class="space-y-8">
                     
-                    <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
-                        <h3 class="font-bold text-gray-900 text-[9px] uppercase tracking-wider border-b border-gray-100 pb-2 mb-4">Product Information</h3>
+                    <!-- Product Details Section -->
+                    <div class="space-y-6">
+                        <h3 class="font-bold text-gray-900 text-xs uppercase tracking-wider border-b border-gray-200 pb-2 mb-4">Product Details</h3>
                         
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-gray-600 font-medium mb-1.5 ml-0.5 text-[10px]">Product Name</label>
-                                <input type="text" name="name" placeholder="e.g. Nike Air Max" class="w-full bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 text-[10px] focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-gray-400">
-                            </div>
+                        <div>
+                            <label class="block text-gray-600 font-medium mb-2 ml-1 text-sm">Product Name</label>
+                            <input type="text" name="name" placeholder="e.g. Nike Air Max" class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-gray-400 shadow-sm">
+                        </div>
 
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-gray-600 font-medium mb-1.5 ml-0.5 text-[10px]">Price ($)</label>
-                                    <input type="number" name="price" placeholder="120" class="w-full bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 text-[10px] focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-gray-400">
-                                </div>
-                                <div>
-                                    <label class="block text-gray-600 font-medium mb-1.5 ml-0.5 text-[10px]">Discount Price ($)</label>
-                                    <input type="number" name="discount" placeholder="100" class="w-full bg-gray-50 border border-gray-200 rounded-sm px-3 py-2 text-[10px] focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-gray-400">
-                                </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-600 font-medium mb-2 ml-1 text-sm">Price (Rs)</label>
+                                <input type="number" name="price" placeholder="120" class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-gray-400 shadow-sm">
+                            </div>
+                            <div>
+                                <label class="block text-gray-600 font-medium mb-2 ml-1 text-sm">Discount Price (Rs)</label>
+                                <input type="number" name="discount" placeholder="100" class="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all placeholder-gray-400 shadow-sm">
                             </div>
                         </div>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg border border-gray-100 shadow-sm">
-                        <h3 class="font-bold text-gray-900 text-[9px] uppercase tracking-wider border-b border-gray-100 pb-2 mb-4">Product Image</h3>
-                        
+                    <!-- Image Upload Section -->
+                    <div class="pt-4">
+                        <label class="block text-gray-600 font-medium mb-2 ml-1 text-sm">Product Image</label>
                         <div class="flex items-center justify-center w-full">
-                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-200 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 hover:border-blue-400 transition-all group">
+                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-200 border-dashed rounded-xl cursor-pointer bg-white hover:bg-gray-50 hover:border-blue-400 transition-all group">
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-6 h-6 mb-2 text-gray-400 group-hover:text-blue-500 transition-colors" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <svg class="w-10 h-10 mb-3 text-gray-400 group-hover:text-blue-500 transition-colors" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
                                     </svg>
-                                    <p class="mb-1 text-[10px] text-gray-500"><span class="font-semibold text-gray-700">Click to upload</span> or drag and drop</p>
-                                    <p class="text-[9px] text-gray-400">PNG, JPG or JPEG (MAX. 2MB)</p>
+                                    <p class="mb-2 text-sm text-gray-500"><span class="font-semibold text-gray-900">Click to upload</span> or drag and drop</p>
+                                    <p class="text-xs text-gray-400">PNG, JPG or JPEG (MAX. 2MB)</p>
                                 </div>
                                 <input id="dropzone-file" name="image" type="file" class="hidden" />
                             </label>
                         </div> 
                     </div>
 
-                    <div class="pt-2 flex justify-center ">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-8 rounded-md shadow-sm hover:shadow transition-all text-[10px]">
+                    <!-- Submit Button -->
+                    <div class="pt-8 border-t border-gray-100 flex justify-center">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-10 rounded-lg shadow-md hover:shadow-lg transition-all text-sm transform hover:-translate-y-0.5">
                             Create New Product
                         </button>
                     </div>
@@ -148,8 +131,8 @@
             setTimeout(() => {
                 flashMsg.style.transition = 'opacity 0.5s ease';
                 flashMsg.style.opacity = '0';
-                setTimeout(() => flashMsg.remove(), 500); // Remove from DOM after fade out
-            }, 3000); // Wait 3 seconds
+                setTimeout(() => flashMsg.remove(), 500);
+            }, 3000); 
         }
     </script>
 
