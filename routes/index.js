@@ -11,12 +11,13 @@ router.get("/", (req, res) => {
     res.render("index", { error, success })
 })
 
+
+
 router.get("/shop", isloggedin, async (req, res) => {
 
     let success = req.flash("success")
     let products = await productModel.find()
-    let user = await userModel.find()
-    res.render("shop", { success, products, user: req.user})
+    res.render("shop", { success, products, user: req.user })
 })
 
 router.get("/cart", isloggedin, async (req, res) => {

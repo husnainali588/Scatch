@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scatch - Admin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'xxs': '0.65rem',
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#3b82f6',
+                            dark: '#1f2937',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(15px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .scatch-wrapper { display: inline-flex; cursor: pointer; position: relative; }
+        .letter-span { display: inline-block; transition: color 0.2s ease; transform-origin: bottom center; }
+        .ball-span { display: inline-block; color: #3b82f6; }
+    </style>
+</head>
+
+<body class="bg-gray-50 h-screen w-screen overflow-hidden flex flex-col relative text-xs items-center justify-center">
+
+    <!-- DYNAMIC ALERTS -->
+    <% if(typeof error !== 'undefined' && error && error.length > 0){ %>
+        <div class="dismiss-alert fixed top-5 right-5 z-[100]">
+            <div class="flex items-center gap-2 px-4 py-2 bg-white border border-red-200 rounded-full shadow-sm">
+                <svg class="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span class="text-red-600 font-medium text-[10px] tracking-wide">
+                    <%= Array.isArray(error) ? error.join(', ') : error %>
+                </span>
+            </div>
+        </div>
+    <% } %>
+
+    <% if(typeof success !== 'undefined' && success && success.length > 0){ %>
+        <div class="dismiss-alert fixed top-5 right-5 z-[100]">
+            <div class="flex items-center gap-2 px-4 py-2 bg-white border border-green-200 rounded-full shadow-sm">
+                <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                <span class="text-green-600 font-medium text-[10px] tracking-wide">
+                    <%= Array.isArray(success) ? success.join(', ') : success %>
+                </span>
+            </div>
+        </div>
+    <% } %>
+
+    <!-- LOGIN CARD -->
+    <div class="w-full max-w-sm px-4 opacity-0 animate-fade-in-up animation-delay-100">
+        <div class="bg-white rounded-lg border border-gray-200 shadow-sm p-8">
+            
+            <div class="mb-6 text-center">
+                <h1 class="text-lg md:text-xl font-extrabold text-gray-900 mb-0.5 tracking-tight leading-tight select-none">
+                    <span class="scatch-wrapper ml-1 text-blue-600">
+                        <span class="letter-span">S</span><span class="letter-span">c</span><span class="letter-span">a</span><span class="letter-span">t</span><span class="letter-span">c</span><span class="letter-span">h</span><span class="letter-span ball-span text-blue-600">.</span>
+                    </span>
+                    <span class="text-gray-400 font-normal ml-1 text-sm">Owner</span>
+                </h1>
+                <p class="text-[10px] text-gray-500 font-medium">Access the master dashboard.</p>
+            </div>
+
+            <form action="/owner/login" method="post" class="space-y-4">
+                <div class="space-y-3">
+                    <div class="group relative">
+                        <label class="block text-gray-500 text-[9px] font-medium mb-1 ml-0.5 uppercase tracking-wide">Email</label>
+                        <input type="email" name="email" placeholder="admin@scatch.com"
+                            class="relative w-full bg-white border border-gray-200 rounded-md px-3 py-2 text-gray-800 placeholder-gray-400 text-[10px] font-medium focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition-all shadow-sm">
+                    </div>
+                    <div class="group relative">
+                        <label class="block text-gray-500 text-[9px] font-medium mb-1 ml-0.5 uppercase tracking-wide">Password</label>
+                        <input type="password" name="password" placeholder="••••••••"
+                            class="relative w-full bg-white border border-gray-200 rounded-md px-3 py-2 text-gray-800 placeholder-gray-400 text-[10px] font-medium focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:outline-none transition-all shadow-sm">
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit"
+                        class="w-full bg-gray-900 hover:bg-black text-white text-[10px] font-semibold py-2.5 px-5 rounded-md shadow-sm transition-all duration-300 tracking-wide uppercase">
+                        Enter Portal
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <p class="text-center text-[9px] text-gray-400 mt-6 font-medium">
+            Authorized Personnel Only
+        </p>
+    </div>
+
+    <!-- AUTO-HIDE SCRIPT -->
+    <script>
+        const alerts = document.querySelectorAll('.dismiss-alert');
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
+            }, 3000); 
+        });
+    </script>
+
+</body>
+</html>
