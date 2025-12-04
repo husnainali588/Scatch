@@ -369,8 +369,8 @@ Contributions are welcome! Please follow these steps:
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/husnainali588)
-- LinkedIn: [Your LinkedIn](www.linkedin.com/in/husnain-ali-25a437302)
+- GitHub: [@husnainali588](https://github.com/husnainali588)
+- LinkedIn: [husnainali588](www.linkedin.com/in/husnain-ali-25a437302)
 - Email: husnainalimughal588@gmail.com
 
 ---
