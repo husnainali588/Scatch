@@ -22,7 +22,6 @@
 
 <body class="bg-gray-50 font-sans text-sm text-gray-700 selection:bg-blue-100">
 
-    <!-- DYNAMIC ALERTS -->
     <% if(typeof success !== 'undefined' && success && success.length > 0){ %>
         <div id="flash-message" class="fixed top-6 right-6 z-[100]">
             <div class="flex items-center gap-3 px-5 py-3 bg-white border border-green-200 rounded-full shadow-md">
@@ -34,7 +33,6 @@
 
     <div class="min-h-screen flex">
 
-        <!-- SIDEBAR (Standard Width) -->
         <aside class="w-64 bg-white border-r border-gray-200 flex flex-col fixed h-full z-10">
             <div class="px-6 py-6 border-b border-gray-100">
                 <h1 class="text-xl font-bold tracking-tight text-gray-900">
@@ -42,7 +40,6 @@
                 </h1>
             </div>
             <nav class="flex-1 px-4 py-6 space-y-2">
-                <!-- Active State -->
                 <a href="/owner/admin/dashboard" class="flex items-center gap-3 px-4 py-3 text-gray-900 bg-gray-50 border border-gray-200/50 rounded-lg font-medium transition-colors text-sm">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                     Create Product
@@ -64,17 +61,14 @@
             </div>
         </aside>
 
-        <!-- CONTENT AREA -->
         <main class="flex-1 ml-64 p-10">
             
             <div class="max-w-4xl mx-auto">
                 <h2 class="text-2xl font-bold text-gray-900 mb-2">Create New Product</h2>
                 <p class="text-gray-500 mb-8 text-sm">Add details for a new item in your store.</p>
 
-                <!-- CREATE PRODUCT FORM -->
                 <form action="/products/create" autocomplete="off" method="post" enctype="multipart/form-data" class="space-y-8">
                     
-                    <!-- Product Details Section -->
                     <div class="space-y-6">
                         <h3 class="font-bold text-gray-900 text-xs uppercase tracking-wider border-b border-gray-200 pb-2 mb-4">Product Details</h3>
                         
@@ -95,7 +89,6 @@
                         </div>
                     </div>
 
-                    <!-- Image Upload Section -->
                     <div class="pt-4">
                         <label class="block text-gray-600 font-medium mb-2 ml-1 text-sm">Product Image</label>
                         <div class="flex items-center justify-center w-full">
@@ -112,7 +105,6 @@
                         </div> 
                     </div>
 
-                    <!-- Submit Button -->
                     <div class="pt-8 border-t border-gray-100 flex justify-center">
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-10 rounded-lg shadow-md hover:shadow-lg transition-all text-sm transform hover:-translate-y-0.5">
                             Create New Product

@@ -53,7 +53,6 @@
         .scatch-wrapper:not(:hover) .ball-span { animation: autoBounce 3s ease-in-out infinite; animation-delay: 1s; }
         .scatch-wrapper:hover .ball-span { animation: letter-wave 0.8s cubic-bezier(0.35, 0, 0.25, 1); animation-delay: 350ms; color: #ec4899; }
         
-        /* Staggered delays */
         .scatch-wrapper:hover .letter-span:nth-child(1) { animation-delay: 0ms; }
         .scatch-wrapper:hover .letter-span:nth-child(2) { animation-delay: 50ms; }
         .scatch-wrapper:hover .letter-span:nth-child(3) { animation-delay: 100ms; }
@@ -71,7 +70,6 @@
 
 <body class="bg-gray-50 h-screen w-screen overflow-hidden flex flex-col relative text-sm text-gray-700">
 
-    <!-- DYNAMIC ALERTS (Scaled) -->
     <% if(typeof error !== 'undefined' && error && error.length > 0){ %>
         <div class="dismiss-alert fixed top-6 right-6 z-[100]">
             <div class="flex items-center gap-3 px-5 py-3 bg-white border border-red-200 rounded-full shadow-md">
@@ -94,15 +92,12 @@
         </div>
     <% } %>
 
-    <!-- Canvas for Dynamic Dots Effect -->
     <canvas id="dots-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-50"></canvas>
 
-    <!-- Main Content -->
     <main class="flex-grow flex items-center justify-center px-8 md:px-16 relative z-10 overflow-y-auto">
 
         <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
-            <!-- Left Side: Create Account -->
             <div class="space-y-6 opacity-0 animate-fade-in-up animation-delay-100">
                 <div>
                     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2 tracking-tight leading-tight select-none">
@@ -141,7 +136,6 @@
                 </form>
             </div>
 
-            <!-- Right Side: Login -->
             <div class="space-y-6 mt-8 md:mt-12 opacity-0 animate-fade-in-up animation-delay-300">
                 <div>
                     <h2 class="text-2xl font-bold text-gray-900 mb-2">Login Your Account</h2>
@@ -173,7 +167,6 @@
         </div>
     </main>
 
-    <!-- Auto-hide script -->
     <script>
         const alerts = document.querySelectorAll('.dismiss-alert');
         alerts.forEach(alert => {

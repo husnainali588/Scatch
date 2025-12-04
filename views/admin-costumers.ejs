@@ -22,7 +22,6 @@
 
 <body class="bg-gray-50 font-sans text-sm text-gray-700 selection:bg-blue-100">
 
-    <!-- DYNAMIC ALERTS -->
     <% if(typeof success !== 'undefined' && success && success.length > 0){ %>
         <div id="flash-message" class="fixed top-6 right-6 z-[100]">
             <div class="flex items-center gap-3 px-5 py-3 bg-white border border-green-200 rounded-full shadow-md">
@@ -34,7 +33,6 @@
 
     <div class="min-h-screen flex">
 
-        <!-- SIDEBAR (Scaled Up) -->
         <aside class="w-64 bg-white border-r border-gray-200 flex flex-col fixed h-full z-10">
             <div class="px-6 py-6 border-b border-gray-100">
                 <h1 class="text-xl font-bold tracking-tight text-gray-900">
@@ -64,11 +62,9 @@
             </div>
         </aside>
 
-        <!-- CONTENT AREA -->
         <main class="flex-1 ml-64 p-10">
             <div class="max-w-6xl mx-auto">
                 
-                <!-- Header & Search -->
                 <div class="flex items-end justify-between mb-8">
                     <div>
                         <h2 class="text-2xl font-bold text-gray-900 mb-1">Customer Database</h2>
@@ -81,7 +77,6 @@
                     </div>
                 </div>
 
-                <!-- USERS TABLE -->
                 <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                     
                     <% if(users && users.length > 0) { %>
@@ -110,9 +105,7 @@
                                             </div>
                                         </td>
 
-                                        <!-- Actions -->
                                         <td class="px-6 py-4 text-right">
-                                            <!-- Delete User Form -->
                                             <form action="/owner/admin/delete/<%= user._id %>" method="post" class="inline-block"
                                                   onsubmit="return confirm('This action cannot be undone. Delete user?');">
                                                 <button type="submit" class="text-gray-400 hover:text-red-600 hover:bg-red-50 p-2 rounded-lg transition-all" title="Delete User">
@@ -125,7 +118,6 @@
                             </tbody>
                         </table>
                     <% } else { %>
-                        <!-- Empty State -->
                         <div class="flex flex-col items-center justify-center py-16">
                             <span class="text-5xl mb-4 opacity-30 grayscale">👥</span>
                             <p class="text-gray-500 font-medium text-base">No users found.</p>
@@ -137,7 +129,6 @@
         </main>
     </div>
 
-    <!-- Auto-hide script -->
     <script>
         const flashMsg = document.getElementById('flash-message');
         if (flashMsg) {

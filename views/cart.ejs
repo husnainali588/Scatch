@@ -16,7 +16,6 @@
 
 <body class="bg-gray-50 font-sans selection:bg-blue-100 text-base text-gray-700">
 
-    <!-- NAVIGATION (Scaled Up) -->
     <nav
         class="sticky top-0 z-40 w-full bg-gray-50/80 backdrop-blur-md border-b border-gray-200 px-8 py-5 flex justify-between items-center transition-all duration-300">
         <h1 class="text-2xl font-bold tracking-tight text-gray-900 cursor-pointer">
@@ -41,19 +40,16 @@
         </div>
     </nav>
 
-    <!-- MAIN CART AREA -->
     <div class="max-w-7xl mx-auto px-8 py-12">
 
         <h2 class="text-3xl font-bold text-gray-900 mb-10 tracking-tight">Shopping Cart</h2>
 
         <div class="flex flex-col lg:flex-row gap-12">
 
-            <!-- LEFT SIDE: CART ITEMS -->
             <div class="flex-1 space-y-6">
 
                 <% if(user.cart.length> 0) { %>
                     <% user.cart.forEach( (item)=> { %>
-                        <!-- Safety Check -->
                         <% if(item.product) { %>
 
                             <% let dateObj=new Date(parseInt(item.product._id.toString().substring(0, 8), 16) * 1000);
@@ -64,7 +60,6 @@
                                 <div
                                     class="flex items-start gap-8 bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
 
-                                    <!-- Product Image (Increased to w-32 / 128px) -->
                                     <div
                                         class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0 relative border border-gray-100">
                                         <img class="w-full h-full object-cover mix-blend-multiply opacity-95"
@@ -72,7 +67,6 @@
                                             alt="<%= item.product.name %>">
                                     </div>
 
-                                    <!-- Product Info -->
                                     <div class="flex-1 py-1">
                                         <div class="flex justify-between items-start">
                                             <div>
@@ -103,7 +97,6 @@
                                         </div>
 
                                         <div class="flex items-center justify-between mt-8">
-                                            <!-- Quantity Controls (Larger) -->
                                             <div
                                                 class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
                                                 <a href="/cart/remove/<%= item.product._id %>"
@@ -116,7 +109,6 @@
                                                     class="px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors bg-gray-50 text-lg font-bold">+</a>
                                             </div>
 
-                                            <!-- Item Total -->
                                             <span class="text-sm font-medium text-gray-500">
                                                 Item Total: <span class="text-gray-900 font-bold text-base">Rs <%=
                                                         item.product.price * item.quantity %></span>
@@ -128,7 +120,6 @@
                                     <% }) %>
 
                                         <% } else { %>
-                                            <!-- Empty Cart State -->
                                             <div
                                                 class="flex flex-col items-center justify-center py-24 bg-white border-2 border-dashed border-gray-300 rounded-2xl text-gray-400">
                                                 <span class="text-6xl mb-6 opacity-30 grayscale">🛒</span>
@@ -141,7 +132,6 @@
 
             </div>
 
-            <!-- RIGHT SIDE: ORDER SUMMARY (Scaled Up) -->
             <% if(user.cart.length> 0) { %>
                 <div class="w-full lg:w-96 h-fit sticky top-28">
                     <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">

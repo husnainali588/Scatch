@@ -25,7 +25,6 @@ router.post("/create", upload.single("image"), async (req, res) => {
     }
 })
 
-
 router.post("/delete/:id", async (req, res) => {
     try {
         await productModel.findByIdAndDelete(req.params.id);

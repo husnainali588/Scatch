@@ -11,6 +11,77 @@ router.get("/", (req, res) => {
     res.render("index", { error, success })
 })
 
+router.get("/shop", isloggedin, async (req, res) => {
+
+    let success = req.flash("success")
+    let products = await productModel.find()
+    res.render("shop", {success, products, user: req.user })
+})
+
+router.get("/shop/filter", isloggedin, async (req, res) => {
+    try {
+        let query = {};
+        let sortOption = {};
+        
+        let minPrice = req.query.min;
+        let maxPrice = req.query.max;
+
+        if (minPrice || maxPrice) {
+            query.price = {};
+            
+            if (minPrice && minPrice.trim() !== '') {
+                query.price.$gte = Number(minPrice);
+            }
+            if (maxPrice && maxPrice.trim() !== '') {
+                query.price.$lte = Number(maxPrice);
+            }
+        }
+
+        let sort = req.query.sort;
+        
+        if (sort === 'low-to-high') {
+            sortOption.price = 1; r
+        } else if (sort === 'high-to-low') {
+            sortOption.price = -1; 
+        }
+
+        let products = await productModel.find(query).sort(sortOption);
+
+        let success = req.flash("success");
+        
+        res.render("shop", { 
+            success, 
+            products, 
+            user: req.user,
+            filters: {
+                min: minPrice || '',
+                max: maxPrice || '',
+                sort: sort || ''
+            }
+        });
+
+    } catch (err) {
+        console.error('Filter error:', err);
+        req.flash("error", "Something went wrong while filtering products");
+        res.redirect("/shop");
+    }
+});
+
+router.get("/cart", isloggedin, async (req, res) => {
+    let user = await userModel
+        .findOne({ email: req.user.email })
+        .populate("cart.product");
+
+    const validCart = user.cart.filter(item => item.product !== null);
+
+    if (user.cart.length !== validCart.length) {
+        user.cart = validCart;
+        await user.save();
+    }
+
+    res.render("cart", { user });
+});
+
 router.get("/cart/clear", isloggedin, async (req, res) => {
     try {
         let user = await userModel.findOne({ email: req.user.email });
@@ -24,30 +95,6 @@ router.get("/cart/clear", isloggedin, async (req, res) => {
         req.flash("error", "Error clearing cart.");
         res.redirect("/cart");
     }
-});
-
-router.get("/shop", isloggedin, async (req, res) => {
-
-    // let success = req.flash("success")
-    let products = await productModel.find()
-    res.render("shop", { products, user: req.user })
-})
-
-router.get("/cart", isloggedin, async (req, res) => {
-    let user = await userModel
-        .findOne({ email: req.user.email })
-        .populate("cart.product");
-
-    // 🧹 AUTO-CLEAN: Filter out items where product is null (deleted products)
-    const validCart = user.cart.filter(item => item.product !== null);
-
-    // If we found bad items, update the database immediately
-    if (user.cart.length !== validCart.length) {
-        user.cart = validCart;
-        await user.save();
-    }
-
-    res.render("cart", { user });
 });
 
 router.get("/addtocart/:id", isloggedin, async (req, res) => {
@@ -64,16 +111,12 @@ router.get("/addtocart/:id", isloggedin, async (req, res) => {
 
         await user.save();
         req.flash("success", "Added to cart");
-
-        // 🟢 FIX: Redirect back to where the user came from
-        // If 'Referer' is missing (rare), default to '/shop'
         const previousPage = req.get('Referer') || '/shop';
         res.redirect(previousPage);
 
     } catch (err) {
         req.flash("error", "Error adding to cart");
 
-        // Also redirect back on error
         const previousPage = req.get('Referer') || '/shop';
         res.redirect(previousPage);
     }
@@ -84,11 +127,9 @@ router.get("/cart/remove/:id", isLoggedIn, async (req, res) => {
         let user = await userModel.findOne({ email: req.user.email });
         const itemIndex = user.cart.findIndex(item => item.product._id.toString() === req.params.id);
         if (itemIndex > -1) {
-            // 1. If quantity is greater than 1, just decrease it
             if (user.cart[itemIndex].quantity > 1) {
                 user.cart[itemIndex].quantity -= 1;
             }
-            // 2. If quantity is 1, remove the item entirely
             else {
                 user.cart.splice(itemIndex, 1);
             }
@@ -101,5 +142,6 @@ router.get("/cart/remove/:id", isLoggedIn, async (req, res) => {
         res.redirect("/cart");
     }
 })
+
 
 module.exports = router

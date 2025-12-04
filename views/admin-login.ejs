@@ -43,7 +43,6 @@
 
 <body class="bg-gray-50 h-screen w-screen overflow-hidden flex flex-col relative text-sm items-center justify-center">
 
-    <!-- DYNAMIC ALERTS (Scaled Up) -->
     <% if(typeof error !== 'undefined' && error && error.length > 0){ %>
         <div class="dismiss-alert fixed top-6 right-6 z-[100]">
             <div class="flex items-center gap-3 px-5 py-3 bg-white border border-red-200 rounded-full shadow-md">
@@ -66,7 +65,6 @@
         </div>
     <% } %>
 
-    <!-- LOGIN CARD (Scaled Up) -->
     <div class="w-full max-w-md px-6 opacity-0 animate-fade-in-up animation-delay-100">
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm p-10">
             
@@ -108,7 +106,6 @@
         </p>
     </div>
 
-    <!-- AUTO-HIDE SCRIPT -->
     <script>
         const alerts = document.querySelectorAll('.dismiss-alert');
         alerts.forEach(alert => {
